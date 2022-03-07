@@ -1,5 +1,65 @@
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+:root {}
+
+
 body {
     font-family: "Didact Gothic";
-    font-size: 40px;
+    font-style: normal;
+    font-size: 22px;
     font-weight: 700;
+    color: #fff;
+    background-color: #000;
+}
+
+.wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: blue;
+}
+
+
+
+.header {
+    
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.converter {
+    background-color: #fff;
+    min-height: 75vh;
+    min-width: 50vw;
+}
+
+
+
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1vh;
+}
+
+.footer-wrapper {
+    display: flex;
+    gap: 1vh;
+}
+
+.footer-wrapper span,
+.footer-wrapper a {
+    display: block;
 }
