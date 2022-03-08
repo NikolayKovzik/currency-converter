@@ -31,21 +31,31 @@ body {
     
 }
 
+
+
+
+
 .main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    gap: 3vh;
 }
 
+section {
+    padding: 1vw;
+}
 
 .converter {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 1vw;
     background-color: #fff;
-    min-height: 35vh;
-    min-width: 50vw;
+    height: 25vh;
+    width: 65vw;
     color: #000;
 }
 
@@ -56,6 +66,10 @@ body {
     justify-content: center;
     gap: 1vh;
     height: auto;
+}
+
+.first-wrapper {
+
 }
 
 .button-wrapper {
@@ -80,7 +94,47 @@ input:hover {
 
 
 
+.datepicker-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 48vh;
+    width: 65vw;
+    gap: 2vw;
+    background-color: #fff;
+    color: #000;
+}
 
+.datepicker-form {
+    display: block;
+}
+
+.choice-section,
+.display-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1vh;
+}
+
+.choice-section {
+    width: 30%;
+}
+
+.display-section {
+    width: 75%;
+}
+
+.output-wrapper {
+    width: 30%;
+}
+
+.currency-label {
+    width: 23%;
+}
+
+.display-input {
+    width: 72%;
+}
 
 
 

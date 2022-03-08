@@ -22,8 +22,6 @@ function getExchangeRates(link){
     console.log(`${BASE_URL}/${API_KEY}/latest/${firstList.value}`);
 }   
 
-
-
 converter.onsubmit = (event) => {
     event.preventDefault();
     if(firstInput.value){
