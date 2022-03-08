@@ -40,10 +40,28 @@ body {
 
 
 .converter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: #fff;
-    min-height: 75vh;
+    min-height: 35vh;
     min-width: 50vw;
+    color: #000;
 }
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+    height: auto;
+}
+
+.button-wrapper {
+    height: max-content;
+}
+
 
 
 

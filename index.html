@@ -18,8 +18,96 @@
     </header>
 
     <main class="main wrapper">
-        <section class="converter">
-            
+        
+        <section class="converter-wrapper">
+            <form class="converter">
+                <div class="container first-wrapper">
+                    <label for="first-list">Select the currency you want to exchange:</label>
+                    <select class="from-list" id="first-list">
+                        <option value="AUD">AUD</option>
+                        <option value="AZN">AZN</option>
+                        <option value="BYN" selected>BYN</option>
+                        <option value="BRL">BRL</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CNY">CNY</option>
+                        <option value="COP">COP</option>
+                        <option value="DKK">DKK</option>
+                        <option value="EGP">EGP</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="HKD">HKD</option>
+                        <option value="ISK">ISK</option>
+                        <option value="IDR">IDR</option>
+                        <option value="IRR">IRR</option>
+                        <option value="ILS">ILS</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KZT">KZT</option>
+                        <option value="KWD">KWD</option>
+                        <option value="MXN">MXN</option>
+                        <option value="NZD">NZD</option>
+                        <option value="KPW">KPW</option>
+                        <option value="PKR">PKR</option>
+                        <option value="PLN">PLN</option>
+                        <option value="QAR">QAR</option>
+                        <option value="RUB">RUB</option>
+                        <option value="SAR">SAR</option>
+                        <option value="SGD">SGD</option>
+                        <option value="SEK">SEK</option>
+                        <option value="TWD">TWD</option>
+                        <option value="UAH">UAH</option>
+                        <option value="USD">USD</option>
+                        <option value="ZAR">ZAR</option>
+                    </select>
+                    <label for="currency-input">Enter quantity:</label>
+                    <input class="first-input" type="number" id="currency-input" placeholder="0" value="1" autocomplete="off">
+                </div>
+                <div class="button-wrapper">
+                    <input class="submit-button" type="submit" value="convert">
+                </div>
+                <div class="container second-wrapper">
+                    <label for="second-list">Select the currency you want to convert to:</label>
+                    <select class="to-list" id="second-list">
+                        <option value="AUD">AUD</option>
+                        <option value="AZN">AZN</option>
+                        <option value="BYN">BYN</option>
+                        <option value="BRL">BRL</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CNY">CNY</option>
+                        <option value="COP">COP</option>
+                        <option value="DKK">DKK</option>
+                        <option value="EGP">EGP</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="HKD">HKD</option>
+                        <option value="ISK">ISK</option>
+                        <option value="IDR">IDR</option>
+                        <option value="IRR">IRR</option>
+                        <option value="ILS">ILS</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KZT">KZT</option>
+                        <option value="KWD">KWD</option>
+                        <option value="MXN">MXN</option>
+                        <option value="NZD">NZD</option>
+                        <option value="KPW">KPW</option>
+                        <option value="PKR">PKR</option>
+                        <option value="PLN">PLN</option>
+                        <option value="QAR">QAR</option>
+                        <option value="RUB">RUB</option>
+                        <option value="SAR">SAR</option>
+                        <option value="SGD">SGD</option>
+                        <option value="SEK">SEK</option>
+                        <option value="TWD">TWD</option>
+                        <option value="UAH">UAH</option>
+                        <option value="USD" selected>USD</option>
+                        <option value="ZAR">ZAR</option>
+                    </select>
+                    <label for="result-input">Result:</label>
+                    <input class="second-input" type="number" id="result-input" disabled>
+                </div>
+            </form>
+            <!-- <input type="date"> -->
         </section>
     </main>
 
@@ -30,6 +118,7 @@
             <a href="https://github.com/NikolayKovzik" class="link">github</a>
         </div>
     </footer>
+    <script src="./scripts/app.js"></script>
 </body>
 
 </html>
