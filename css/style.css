@@ -1,6 +1,5 @@
 html {
     box-sizing: border-box;
-    scroll-behavior: smooth;
 }
 
 *, *::after, *::before {
@@ -17,6 +16,7 @@ body {
     font-weight: 700;
     color: #fff;
     background-color: #000;
+    margin: 0;
 }
 
 .wrapper {
@@ -61,6 +61,27 @@ body {
 .button-wrapper {
     height: max-content;
 }
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('../assets/img/select-arrow.svg');
+    background-position: right 10px top 50%, 0, 0;
+    background-size: 12px auto, 100%;
+    background-repeat: no-repeat;
+}
+
+select:focus,
+input:focus,
+input:hover {
+  outline: 0;
+}
+
+
+
+
+
 
 
 
