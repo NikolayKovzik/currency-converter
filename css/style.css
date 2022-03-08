@@ -1,5 +1,158 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+:root {}
+
+
 body {
     font-family: "Didact Gothic";
-    font-size: 40px;
+    font-style: normal;
+    font-size: 22px;
     font-weight: 700;
+    color: #fff;
+    background-color: #000;
+    margin: 0;
+}
+
+.wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: blue;
+}
+
+
+
+.header {
+    
+}
+
+
+
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 3vh;
+}
+
+section {
+    padding: 1vw;
+}
+
+.converter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1vw;
+    background-color: #fff;
+    height: 25vh;
+    width: 65vw;
+    color: #000;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+    height: auto;
+}
+
+.first-wrapper {
+
+}
+
+.button-wrapper {
+    height: max-content;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('../assets/img/select-arrow.svg');
+    background-position: right 10px top 50%, 0, 0;
+    background-size: 12px auto, 100%;
+    background-repeat: no-repeat;
+}
+
+select:focus,
+input:focus,
+input:hover {
+  outline: 0;
+}
+
+
+
+.datepicker-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 48vh;
+    width: 65vw;
+    gap: 2vw;
+    background-color: #fff;
+    color: #000;
+}
+
+.datepicker-form {
+    display: block;
+}
+
+.choice-section,
+.display-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1vh;
+}
+
+.choice-section {
+    width: 30%;
+}
+
+.display-section {
+    width: 75%;
+}
+
+.output-wrapper {
+    width: 30%;
+}
+
+.currency-label {
+    width: 23%;
+}
+
+.display-input {
+    width: 72%;
+}
+
+
+
+
+
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1vh;
+}
+
+.footer-wrapper {
+    display: flex;
+    gap: 1vh;
+}
+
+.footer-wrapper span,
+.footer-wrapper a {
+    display: block;
 }
