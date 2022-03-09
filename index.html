@@ -14,13 +14,21 @@
 
 <body>
     <header class="header wrapper">
-
+        <div class="logo-wrapper">
+            <img class="logo" src="./assets/img/header-img.png" alt="logo">
+        </div>
+        <h1>CURRENCY CONVERTER</h1>
+        <div class="switch-lang">
+            <button class="en active" data-switch="en">en</button>
+            <span class="slash">/</span>
+            <button class="ru" data-switch="ru">ru</button>
+        </div>
     </header>
 
     <main class="main wrapper">
 
         <section class="converter-wrapper">
-            <h2>Current exchange rate</h2>
+            <h2>Actual exchange rate</h2>
             <form class="converter">
                 <div class="container first-wrapper">
                     <label>Select the currency you want to exchange:</label>
@@ -64,9 +72,9 @@
                     <input class="first-input" type="number" id="currency-input" placeholder="0" value="1"
                         autocomplete="off">
                 </div>
-                <div class="button-wrapper">
-                    <input class="convert-button button" type="submit" value="convert">
-                </div>
+
+                <input class="convert-button button" type="submit" value="convert">
+
                 <div class="container second-wrapper">
                     <label>Select the currency you want to convert to:</label>
                     <select class="second-list">
@@ -139,56 +147,56 @@
                     <div class="first-column">
                         <div class="output-wrapper">
                             <label class="currency-label">BYN&nbsp;:</label>
-                            <output class="display-output"  name="BYN" ></output>
+                            <output class="display-output" name="BYN"></output>
                         </div>
-        
+
                         <div class="output-wrapper">
                             <label class="currency-label">CAD&nbsp;:</label>
-                            <output class="display-output"  name="CAD" ></output>
+                            <output class="display-output" name="CAD"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">CHF&nbsp;:</label>
-                            <output class="display-output"  name="CHF" ></output>
+                            <output class="display-output" name="CHF"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">CNY&nbsp;:</label>
-                            <output class="display-output"  name="CNY" ></output>
+                            <output class="display-output" name="CNY"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">EUR&nbsp;:</label>
-                            <output class="display-output"  name="EUR" ></output>
+                            <output class="display-output" name="EUR"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">GBP&nbsp;:</label>
-                            <output class="display-output"  name="GBP" ></output>
+                            <output class="display-output" name="GBP"></output>
                         </div>
                     </div>
                     <div class="second-column">
                         <div class="output-wrapper">
                             <label class="currency-label">HKD&nbsp;:</label>
-                            <output class="display-output"  name="HKD" ></output>
+                            <output class="display-output" name="HKD"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">JPY&nbsp;:</label>
-                            <output class="display-output"  name="JPY" ></output>
+                            <output class="display-output" name="JPY"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">KZT&nbsp;:</label>
-                            <output class="display-output"  name="KZT" ></output>
+                            <output class="display-output" name="KZT"></output>
                         </div>
-        
+
                         <div class="output-wrapper">
                             <label class="currency-label">PLN&nbsp;:</label>
-                            <output class="display-output"  name="PLN" ></output>
+                            <output class="display-output" name="PLN"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">RUB&nbsp;:</label>
-                            <output class="display-output"  name="RUB" ></output>
+                            <output class="display-output" name="RUB"></output>
                         </div>
-        
+
                         <div class="output-wrapper">
                             <label class="currency-label">USD&nbsp;:</label>
-                            <output class="display-output"  name="USD" ></output>
+                            <output class="display-output" name="USD"></output>
                         </div>
                     </div>
                 </div>
@@ -198,7 +206,7 @@
         <article class="error invisible">
             <h2>Error!</h2>
             <p>You can't watch course from the future! Please select a valid date.</p>
-            <button class="close-window">OK</button>
+            <button class="close-window button">OK</button>
         </article>
     </main>
     <footer class="footer wrapper">

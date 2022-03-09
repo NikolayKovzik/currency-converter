@@ -14,11 +14,10 @@ html {
     --grey: #78909c;
     --light: #a7c0cd;
     --text: #000;
+    --text-hover: #fff;
 
     --modal-window: rgb(190, 138, 138);
     --modal-button: rgb(172, 123, 123);
-    --modal-button-hover: rgb(190, 151, 151);
-
 }
 
 
@@ -26,25 +25,28 @@ body {
     font-family: "Didact Gothic";
     font-style: normal;
     font-weight: 700;
-    color: #fff;
+    color: var(--text);
     background-color: var(--dark);
+    background-image: url(../assets/img/background.jpg);
+    background-size: cover;
     margin: 0;
+
 }
 
 
 .button {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-
-    color: #000000;
+    display: block;
+    width: 100px;
+    height: 60px;
+    padding: 0px;
     font-family: inherit;
     text-align: center;
-    line-height: var(--line-height40);
-
+    font-size: 1.3rem;
+    color: #000000;
     background-color: #bdae82;
     border: 0;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -58,7 +60,8 @@ select {
     -webkit-appearance: none;
     appearance: none;
     background-image: url('../assets/img/select-arrow.svg');
-    background-position: right 1vh top 50%; /*0, 0;*/
+    background-position: right 1vh top 50%;
+    /*0, 0;*/
     background-size: 2vh auto, 100%;
     background-repeat: no-repeat;
 }
@@ -70,6 +73,7 @@ input:hover {
 }
 
 h2 {
+    height: 10%;
     margin: 0;
     text-align: center;
     line-height: 1.5rem;
@@ -80,7 +84,7 @@ form {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80%;
+    height: 90%;
     width: 100%;
     gap: 2vw;
     color: var(--text);
@@ -91,8 +95,66 @@ form {
 
 
 /*header styles*/
-.header {}
+.header {
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+}
 
+h1 {
+    font-family: 'Arbutus';
+}
+
+.logo-wrapper {
+    margin-left: auto;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    transition: .5s;
+}
+
+.logo:hover {
+    transform: rotate(720deg);
+}
+
+.switch-lang {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: 70px;
+    width: 70px;
+    height: 50px;
+  }
+
+  .slash {
+    display: block;
+    font-weight: 700;
+  }
+
+  .en,
+  .ru {
+    display: block;
+    padding: 0;
+    font-weight: 700;
+    font-family: inherit;
+    background-color: transparent;
+    border: 0;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .en:hover,
+  .ru:hover {
+    color: var(--text-hover);
+  }
+
+  .en.active,
+  .ru.active{
+    color: var(--text-hover);
+  }
 
 
 
@@ -105,12 +167,12 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 1000px;
     gap: 3vh;
 }
 
 .wrapper {
-    width: 80vw;
+    width: 1280px;
     margin: 0 auto;
     background-color: var(--grey)
 }
@@ -143,11 +205,6 @@ section {
     width: 30%;
 }
 
-.button-wrapper {
-    margin-top: 5%;
-    width: 15%;
-    height: 20%;
-}
 
 
 
@@ -155,20 +212,20 @@ section {
 
 /*second section styles*/
 
-.datepicker-wrapper{
+.datepicker-wrapper {
     height: 50%;
 }
 
 
 .choice-section,
 .display-section {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     gap: 1vh;
 }
 
 .choice-section {
+    flex-direction: column;
     width: 30%;
 }
 
@@ -213,16 +270,6 @@ section {
 
 .error p {
     text-align: center;
-}
-
-.error button {
-    background-color: var(--modal-button);
-    border: none;
-    transition: .5s;
-}
-
-.error button:hover {
-    background-color: var(--modal-button-hover)
 }
 
 .error.invisible {

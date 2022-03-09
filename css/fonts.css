@@ -11,3 +11,17 @@
          url('../fonts/didact-gothic-v18-latin_cyrillic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
          url('../fonts/didact-gothic-v18-latin_cyrillic-regular.svg#DidactGothic') format('svg'); /* Legacy iOS */
   }
+
+  /* arbutus-regular - latin */
+@font-face {
+    font-family: 'Arbutus';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/arbutus-v22-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/arbutus-v22-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/arbutus-v22-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/arbutus-v22-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/arbutus-v22-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/arbutus-v22-latin-regular.svg#Arbutus') format('svg'); /* Legacy iOS */
+  }
