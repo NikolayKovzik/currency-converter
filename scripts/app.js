@@ -17,6 +17,8 @@ const secondList = document.querySelector('.second-list');
 const firstInput = document.querySelector('.first-input');
 const secondInput = document.querySelector('.second-input');
 const displayInputs = document.querySelectorAll('.display-input');
+const errorWindow = document.querySelector('.error');
+const closeWindow = document.querySelector('.close-window');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
@@ -27,6 +29,23 @@ async function getData(link) {
     console.log(data);
     return data;
 }
+
+
+function isNotFuture(date) {
+    let arr = date.split('-').map((item) => +item);
+    let now = new Date;
+
+    if (arr[0] > now.getFullYear()) {
+        return false;
+    } else if ((arr[1] > (now.getMonth() + 1)) && arr[0]===now.getFullYear()) {
+        return false;
+    } else if ((arr[2] > now.getDate()) && (arr[1] === (now.getMonth() + 1)) && (arr[0] === now.getFullYear())) {
+        return false;
+    }
+
+    return true;
+}
+
 
 
 
@@ -41,13 +60,19 @@ converter.onsubmit = async (event) => {
 
 datepickerForm.onsubmit = async (event) => {
     event.preventDefault();
-    if (datepicker.value) {
-        let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
-        displayInputs.forEach((item)=>{
-            item.value = (data['rates'][`${item.getAttribute('data-currency')}`]) ? (data['rates'][`${item.getAttribute('data-currency')}`]) 
-                                                                                  : 'no results';
-        })
+    if (datepicker.value && isNotFuture(datepicker.value)) {
+        errorWindow.classList.add('invisible');
+        // let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
+        // displayInputs.forEach((item)=>{
+        //     item.value = (data['rates'][`${item.getAttribute('data-currency')}`]) ? (data['rates'][`${item.getAttribute('data-currency')}`]) 
+        //                                                                           : 'no results';
+        // })
+    } else {
+        errorWindow.classList.remove('invisible');
     }
-
-
 };
+
+
+closeWindow.addEventListener('click', ()=>{
+    errorWindow.classList.add('invisible');
+})

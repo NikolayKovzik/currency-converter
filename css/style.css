@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    font-size: 22px;
 }
 
 *, *::after, *::before {
@@ -12,7 +13,6 @@ html {
 body {
     font-family: "Didact Gothic";
     font-style: normal;
-    font-size: 22px;
     font-weight: 700;
     color: #fff;
     background-color: #000;
@@ -37,6 +37,7 @@ body {
 
 .main {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -139,6 +140,38 @@ input:hover {
 
 
 
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    background-color: rgb(190, 138, 138);
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.error p {
+    text-align: center;
+}
+
+.error button {
+    background-color: rgb(172, 123, 123);
+    border: none;
+    transition: .5s;
+}
+
+.error button:hover {
+    background-color: rgb(190, 151, 151);
+}
+
+.error.invisible{
+    display: none;
+}
 
 
 
