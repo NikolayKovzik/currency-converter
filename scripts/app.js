@@ -42,7 +42,6 @@ function isNotFuture(date) {
     } else if ((arr[2] > now.getDate()) && (arr[1] === (now.getMonth() + 1)) && (arr[0] === now.getFullYear())) {
         return false;
     }
-
     return true;
 }
 
@@ -64,7 +63,7 @@ datepickerForm.onsubmit = async (event) => {
         errorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
         displayInputs.forEach((item)=>{
-            item.value = (data['rates'][`${item.getAttribute('data-currency')}`]) ? (data['rates'][`${item.getAttribute('data-currency')}`]).toFixed(2) 
+            item.value = (data['rates'][`${item.getAttribute('name')}`]) ? (data['rates'][`${item.getAttribute('name')}`]).toFixed(2) 
                                                                                   : 'no results';
         })
     } else {

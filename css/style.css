@@ -1,6 +1,8 @@
+/*common styles*/
+
 html {
     box-sizing: border-box;
-    font-size: 22px;
+    font-size: 1.5vw;
 }
 
 *, *::after, *::before {
@@ -29,68 +31,6 @@ body {
     margin: 0;
 }
 
-.wrapper {
-    max-width: 80vw;
-    margin: 0 auto;
-    background-color: var(--grey)
-}
-
-
-
-.header {}
-
-
-
-
-
-.main {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 3vh;
-}
-
-section {
-    width: 90%;
-    background-color: var(--light);
-    padding: 1vw;
-}
-
-.converter {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1vw;
-    height: 40%;
-    width: 100%;
-    color: var(--text);
-}
-
-.converter-wrapper {
-    height: 20%;
-}
-
-
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1vh;
-    height: auto;
-    width: 30%;
-}
-
-
-
-.button-wrapper {
-    width: 15%;
-    height: 20%;
-}
 
 .button {
     width: 100%;
@@ -113,14 +53,13 @@ section {
 
 }
 
-
 select {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     background-image: url('../assets/img/select-arrow.svg');
-    background-position: right 10px top 50%, 0, 0;
-    background-size: 12px auto, 100%;
+    background-position: right 1vh top 50%; /*0, 0;*/
+    background-size: 2vh auto, 100%;
     background-repeat: no-repeat;
 }
 
@@ -130,19 +69,96 @@ input:hover {
     outline: 0;
 }
 
+h2 {
+    margin: 0;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+}
 
-
-.datepicker-wrapper {
+form {
     display: flex;
-    justify-content: space-between;
-    height: 50%;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    width: 100%;
     gap: 2vw;
     color: var(--text);
 }
 
-.datepicker-form {
-    display: block;
+
+
+
+
+/*header styles*/
+.header {}
+
+
+
+
+
+/*main styles*/
+
+.main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 3vh;
 }
+
+.wrapper {
+    width: 80vw;
+    margin: 0 auto;
+    background-color: var(--grey)
+}
+
+section {
+    width: 90%;
+    background-color: var(--light);
+    padding: 1vw;
+}
+
+
+
+
+
+
+
+
+/*first section styles*/
+
+.converter-wrapper {
+    height: 35%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+    height: 100%;
+    width: 30%;
+}
+
+.button-wrapper {
+    margin-top: 5%;
+    width: 15%;
+    height: 20%;
+}
+
+
+
+
+
+/*second section styles*/
+
+.datepicker-wrapper{
+    height: 50%;
+}
+
 
 .choice-section,
 .display-section {
@@ -164,18 +180,21 @@ input:hover {
     display: flex;
     justify-content: space-between;
     width: 30%;
+    background-color: white;
 }
 
 .currency-label {
     width: 23%;
 }
 
-.display-input {
+.display-output {
     width: 72%;
 }
 
 
 
+
+/*error window styles*/
 
 .error {
     display: flex;
@@ -212,6 +231,7 @@ input:hover {
 
 
 
+/*footer styles*/
 
 .footer {
     display: flex;
