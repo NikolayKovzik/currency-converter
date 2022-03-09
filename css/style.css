@@ -7,7 +7,17 @@ html {
     box-sizing: inherit;
 }
 
-:root {}
+:root {
+    --dark: #4b636e;
+    --grey: #78909c;
+    --light: #a7c0cd;
+    --text: #000;
+
+    --modal-window: rgb(190, 138, 138);
+    --modal-button: rgb(172, 123, 123);
+    --modal-button-hover: rgb(190, 151, 151);
+
+}
 
 
 body {
@@ -15,21 +25,19 @@ body {
     font-style: normal;
     font-weight: 700;
     color: #fff;
-    background-color: #000;
+    background-color: var(--dark);
     margin: 0;
 }
 
 .wrapper {
-    max-width: 1440px;
+    max-width: 80vw;
     margin: 0 auto;
-    background-color: blue;
+    background-color: var(--grey)
 }
 
 
 
-.header {
-    
-}
+.header {}
 
 
 
@@ -41,11 +49,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     gap: 3vh;
 }
 
 section {
+    width: 90%;
+    background-color: var(--light);
     padding: 1vw;
 }
 
@@ -54,11 +64,16 @@ section {
     justify-content: space-around;
     align-items: center;
     gap: 1vw;
-    background-color: #fff;
-    height: 25vh;
-    width: 65vw;
-    color: #000;
+    height: 40%;
+    width: 100%;
+    color: var(--text);
 }
+
+.converter-wrapper {
+    height: 20%;
+}
+
+
 
 
 .container {
@@ -67,15 +82,37 @@ section {
     justify-content: center;
     gap: 1vh;
     height: auto;
+    width: 30%;
 }
 
-.first-wrapper {
 
-}
 
 .button-wrapper {
-    height: max-content;
+    width: 15%;
+    height: 20%;
 }
+
+.button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    color: #000000;
+    font-family: inherit;
+    text-align: center;
+    line-height: var(--line-height40);
+
+    background-color: #bdae82;
+    border: 0;
+    transition: 0.5s;
+}
+
+.button:hover {
+    color: #ffffff;
+    background-color: #bdae82;
+
+}
+
 
 select {
     -moz-appearance: none;
@@ -90,7 +127,7 @@ select {
 select:focus,
 input:focus,
 input:hover {
-  outline: 0;
+    outline: 0;
 }
 
 
@@ -98,11 +135,9 @@ input:hover {
 .datepicker-wrapper {
     display: flex;
     justify-content: space-between;
-    height: 48vh;
-    width: 65vw;
+    height: 50%;
     gap: 2vw;
-    background-color: #fff;
-    color: #000;
+    color: var(--text);
 }
 
 .datepicker-form {
@@ -126,6 +161,8 @@ input:hover {
 }
 
 .output-wrapper {
+    display: flex;
+    justify-content: space-between;
     width: 30%;
 }
 
@@ -150,8 +187,8 @@ input:hover {
     left: 35%;
     width: 30%;
     height: 30%;
-    background-color: rgb(190, 138, 138);
-    color: #000;
+    background-color: var(--modal-window);
+    color: var(--text);
     font-size: 1.5rem;
 }
 
@@ -160,16 +197,16 @@ input:hover {
 }
 
 .error button {
-    background-color: rgb(172, 123, 123);
+    background-color: var(--modal-button);
     border: none;
     transition: .5s;
 }
 
 .error button:hover {
-    background-color: rgb(190, 151, 151);
+    background-color: var(--modal-button-hover)
 }
 
-.error.invisible{
+.error.invisible {
     display: none;
 }
 

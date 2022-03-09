@@ -1,11 +1,11 @@
-//const API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
-//const BASE_URL = "http://data.fixer.io/api/";
-//const API_KEY = "3f8166cfef574c9eb1486f502eb97162";
-//const BASE_URL = "https://openexchangerates.org/api/";
+//const DF_API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
+//const DF_BASE_URL = "http://data.fixer.io/api/";
+
+
 //use for actual courses, 250 per month
 const EXR_API_KEY = "5b0ec37250a51e6d43357326";
 const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
-//use for history queries
+//use for history queries, 1000 per month
 const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
 const OEXR_BASE_URL = "https://openexchangerates.org/api/";
 
@@ -62,11 +62,11 @@ datepickerForm.onsubmit = async (event) => {
     event.preventDefault();
     if (datepicker.value && isNotFuture(datepicker.value)) {
         errorWindow.classList.add('invisible');
-        // let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
-        // displayInputs.forEach((item)=>{
-        //     item.value = (data['rates'][`${item.getAttribute('data-currency')}`]) ? (data['rates'][`${item.getAttribute('data-currency')}`]) 
-        //                                                                           : 'no results';
-        // })
+        let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
+        displayInputs.forEach((item)=>{
+            item.value = (data['rates'][`${item.getAttribute('data-currency')}`]) ? (data['rates'][`${item.getAttribute('data-currency')}`]).toFixed(2) 
+                                                                                  : 'no results';
+        })
     } else {
         errorWindow.classList.remove('invisible');
     }
