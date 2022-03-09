@@ -33,7 +33,6 @@ body {
 
 }
 
-
 .button {
     display: block;
     width: 100px;
@@ -80,6 +79,17 @@ h2 {
     font-size: 1.5rem;
 }
 
+a:active,
+a {
+    text-decoration: none;
+    color: var(--text);
+    transition: .5s;
+}
+
+a:hover {
+    color: var(--text-hover);
+}
+
 form {
     display: flex;
     justify-content: space-around;
@@ -97,7 +107,7 @@ form {
 /*header styles*/
 .header {
     display: flex;
-    justify-content:  center;
+    justify-content: center;
     align-items: center;
 }
 
@@ -127,15 +137,15 @@ h1 {
     margin-right: 70px;
     width: 70px;
     height: 50px;
-  }
+}
 
-  .slash {
+.slash {
     display: block;
     font-weight: 700;
-  }
+}
 
-  .en,
-  .ru {
+.en,
+.ru {
     display: block;
     padding: 0;
     font-weight: 700;
@@ -144,17 +154,17 @@ h1 {
     border: 0;
     transition: 0.5s;
     cursor: pointer;
-  }
+}
 
-  .en:hover,
-  .ru:hover {
+.en:hover,
+.ru:hover {
     color: var(--text-hover);
-  }
+}
 
-  .en.active,
-  .ru.active{
+.en.active,
+.ru.active {
     color: var(--text-hover);
-  }
+}
 
 
 
@@ -167,7 +177,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 1000px;
+    height: 900px;
     gap: 3vh;
 }
 
@@ -203,6 +213,27 @@ section {
     gap: 1vh;
     height: 100%;
     width: 30%;
+}
+
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    height: 100%;
+}
+
+.swap-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.swap-img {
+    display: block;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
 }
 
 

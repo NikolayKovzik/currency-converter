@@ -15,7 +15,7 @@
 <body>
     <header class="header wrapper">
         <div class="logo-wrapper">
-            <img class="logo" src="./assets/img/header-img.png" alt="logo">
+            <img class="logo" src="./assets/img/header-img2.png" alt="logo">
         </div>
         <h1>CURRENCY CONVERTER</h1>
         <div class="switch-lang">
@@ -72,9 +72,12 @@
                     <input class="first-input" type="number" id="currency-input" placeholder="0" value="1"
                         autocomplete="off">
                 </div>
-
-                <input class="convert-button button" type="submit" value="convert">
-
+                <div class="buttons-wrapper">
+                    <div class="swap-wrapper">
+                        <img class="swap-img" src="./assets/img/swap.png" alt="swap">
+                    </div>
+                    <input class="convert-button button" type="submit" value="convert">
+                </div>
                 <div class="container second-wrapper">
                     <label>Select the currency you want to convert to:</label>
                     <select class="second-list">
@@ -213,7 +216,7 @@
         <div class="footer-wrapper">
             <span>©</span>
             <span>2022</span>
-            <a href="https://github.com/NikolayKovzik" class="link">github</a>
+            <a href="https://github.com/NikolayKovzik" class="link" target="_blank">github</a>
         </div>
     </footer>
     <script type="module" src="./scripts/app.js"></script>

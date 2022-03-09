@@ -19,6 +19,7 @@ const secondInput = document.querySelector('.second-input');
 const displayInputs = document.querySelectorAll('.display-input');
 const errorWindow = document.querySelector('.error');
 const closeWindow = document.querySelector('.close-window');
+const swapButton = document.querySelector('.swap-img');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
@@ -74,4 +75,8 @@ datepickerForm.onsubmit = async (event) => {
 
 closeWindow.addEventListener('click', ()=>{
     errorWindow.classList.add('invisible');
+})
+
+swapButton.addEventListener('click', ()=>{
+    [firstList.value,secondList.value] =  [secondList.value,firstList.value];
 })
