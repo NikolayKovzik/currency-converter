@@ -2,7 +2,7 @@
 
 html {
     box-sizing: border-box;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 *, *::after, *::before {
@@ -36,7 +36,7 @@ body {
 .button {
     display: block;
     width: 100px;
-    height: 60px;
+    height: 50px;
     padding: 0px;
     font-family: inherit;
     font-weight: 700;
@@ -87,7 +87,7 @@ input:hover {
 }
 
 h2 {
-    height: 10%;
+    height: 40px;
     margin: 0;
     text-align: center;
     line-height: 1.5rem;
@@ -108,10 +108,9 @@ a:hover {
 form {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    height: 90%;
+    align-items: flex-start;
     width: 100%;
-    gap: 5%;
+    gap: 40px;
     color: var(--text);
 }
 
@@ -124,7 +123,6 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
 }
 
 h1 {
@@ -191,9 +189,8 @@ h1 {
     display: flex;
     position: relative;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 1400px;
     gap: 3vh;
 }
 
@@ -206,7 +203,7 @@ h1 {
 section {
     width: 90%;
     background-color: var(--light);
-    padding: 1vw;
+    padding: 15px;
     border-radius: 10px;
 }
 
@@ -220,19 +217,19 @@ section {
 /*actual currencies select styles*/
 
 .converter-wrapper {
-    height: 40%;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100%;
+    height: 415px;
 }
 
 .input-wrapper {
     width: 20%;
-    gap: 10%
+    gap: 70px;
+    padding-top: 85px;
 }
 
 .select-label,
@@ -248,23 +245,30 @@ section {
 .first-list {
     display: block;
     width: 100%;
-    height: 25%;
+    height: 30px;
+    background-color: var(--grey);
 }
 
-.currency-selector-wrapper{
-    height: 30%;
+.currency-selector-wrapper {
+    height: 135px;
 }
 
 
 .quantity-wrapper {
     position: relative;
     width: 100%;
-    height: 30%;
+    height: 135px;
 }
 
 .exchange-input {
     width: 100%;
     padding-right: 25px;
+    background-color: var(--grey);
+    color: var(--text);
+}
+
+.exchange-input::placeholder {
+    color: var(--text);
 }
 
 
@@ -291,23 +295,22 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     gap: 40px;
-    height: 100%;
+    padding-top: 143px;
 }
 
 .convert-button {
-    margin-top: 63px;
+    margin-top: 85px;
 }
 
 .swap-wrapper {
-    margin-top: 61px;
     display: flex;
     justify-content: center;
 }
 
 .swap-img {
     display: block;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
     transition: .3s;
 }
@@ -330,10 +333,12 @@ section {
 
 .multiselect-wrapper {
     width: 30%;
+    padding-top: 85px;
 }
 
 .second-list {
-    font-size: 0.8rem;
+    background-color: var(--grey);
+    font-size: 0.9rem;
 }
 
 
@@ -341,18 +346,31 @@ section {
 /*first section output styles*/
 
 .actual-output-wrapper {
+    width: 415px;
+    font-size: 0.9rem;
+}
+
+.output-columns-wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.first-output-column,
+.second-output-column {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 200px;
-    height: 100%;
+    gap: 10px;
 }
 
 .result-label {
+    margin-top: 85px;
+    margin-bottom: 40px;
     display: block;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 15px;
+    width: 380px;
+    height: 25px;
 }
 
 .exchange-output {
@@ -365,7 +383,7 @@ section {
 /*second section styles*/
 
 .datepicker-wrapper {
-    height: 50%;
+    /* height: 620px; */
 }
 
 
@@ -389,8 +407,7 @@ section {
     display: flex;
     justify-content: space-between;
     width: 200px;
-    height: auto;
-    background-color: white;
+    background-color: var(--light)
 }
 
 .currency-label {
@@ -436,7 +453,7 @@ section {
 .footer {
     display: flex;
     justify-content: center;
-    padding-bottom: 1vh;
+    padding: 20px 0;
 }
 
 .footer-wrapper {

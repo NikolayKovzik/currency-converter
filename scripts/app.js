@@ -17,8 +17,9 @@ const firstList = document.querySelector('.first-list');
 export const secondList = document.querySelector('.second-list');
 const thirdList = document.querySelector('.third-list');
 export const exchangeInput = document.querySelector('.exchange-input');
-const actualOutputWrapper = document.querySelector('.actual-output-wrapper');
-const exchangeOutput = document.querySelector('.exchange-output');
+const columnsWrapper = document.querySelector('.output-columns-wrapper');
+const firstColumnWrapper = document.querySelector('.first-output-column');
+const secondColumnWrapper = document.querySelector('.second-output-column');
 const displayInputs = document.querySelectorAll('.display-output');
 const historyErrorWindow = document.querySelector('.history-error');
 const selectErrorWindow = document.querySelector('.select-error');
@@ -48,6 +49,9 @@ function getArrayOfSelectedValues() {
     return array;
 }
 
+function clearOutput() {
+    document.querySelectorAll('.exchange-output').forEach((item) => item.remove());
+}
 
 converter.onsubmit = async (event) => {
     event.preventDefault();
@@ -58,13 +62,18 @@ converter.onsubmit = async (event) => {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
 
         if (!labelFlag) {
-            actualOutputWrapper.insertAdjacentHTML('afterbegin', `<label class="result-label">Result:</label>`);
+            columnsWrapper.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
             labelFlag = true;
         }
-        let content = document.querySelectorAll('.exchange-output');
-        content.forEach((item) => item.remove());
+        clearOutput();
+        let outputs = 0;
         selected.forEach((currency) => {
-            actualOutputWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+            outputs++;
+            if (outputs % 2) {
+                firstColumnWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+            } else {
+                secondColumnWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+            }
         })
     }
 };
@@ -112,7 +121,7 @@ swapButton.addEventListener('click', () => {
         [firstList.value, secondList.value] = [secondList.value, firstList.value];
         swapButton.classList.toggle('rotate');
         exchangeInput.value = '';
-        exchangeOutput.value = '';
+        clearOutput();
     } else {
         selectErrorWindow.classList.remove('invisible');
     }
@@ -121,6 +130,7 @@ swapButton.addEventListener('click', () => {
 
 crossButton.addEventListener('click', () => {
     exchangeInput.value = '';
+    clearOutput();
 })
 
 
