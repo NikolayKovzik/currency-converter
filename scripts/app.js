@@ -38,10 +38,9 @@ async function getData(link) {
     return data;
 }
 
-function getArrayOfSelectedValues(){
+function getArrayOfSelectedValues() {
     let array = [];
-    for (let option of secondList.options)
-    {
+    for (let option of secondList.options) {
         if (option.selected) {
             array.push(option.value);
         }
@@ -54,20 +53,20 @@ converter.onsubmit = async (event) => {
     event.preventDefault();
     let selected = getArrayOfSelectedValues();
     console.log(selected);
-    
+
     if (exchangeInput.value && exchangeInput.value > 0) {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
-        
-        if(!labelFlag){
-            actualOutputWrapper.insertAdjacentHTML('beforebegin',`<label>Result:</label>`);
+
+        if (!labelFlag) {
+            actualOutputWrapper.insertAdjacentHTML('afterbegin', `<label class="result-label">Result:</label>`);
             labelFlag = true;
-        }  
+        }
         let content = document.querySelectorAll('.exchange-output');
-        content.forEach((item)=>item.remove());
-        selected.forEach((currency)=>{
-            actualOutputWrapper.insertAdjacentHTML('beforeend',`<output class="exchange-output">${currency}:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+        content.forEach((item) => item.remove());
+        selected.forEach((currency) => {
+            actualOutputWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
         })
-    } 
+    }
 };
 
 
@@ -77,13 +76,13 @@ datepickerForm.onsubmit = async (event) => {
         historyErrorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
 
-        if (historyDataValidation(data, thirdList.value,1) !== 'no results' && historyDataValidation(data, 'USD',1) !== 'no results') {
-            let coef = data['rates']['USD']/data['rates'][`${thirdList.value}`];
+        if (historyDataValidation(data, thirdList.value, 1) !== 'no results' && historyDataValidation(data, 'USD', 1) !== 'no results') {
+            let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
             displayInputs.forEach((item) => {
-                if(item.getAttribute('name') === thirdList.value){
+                if (item.getAttribute('name') === thirdList.value) {
                     item.value = 1
-                } else{
-                    item.value = historyDataValidation(data,item.getAttribute('name'),coef);
+                } else {
+                    item.value = historyDataValidation(data, item.getAttribute('name'), coef);
                 }
             })
         } else {
@@ -108,7 +107,7 @@ closeSelectError.addEventListener('click', () => {
 
 swapButton.addEventListener('click', () => {
     let selected = getArrayOfSelectedValues();
-    if(selected.length === 1) {
+    if (selected.length === 1) {
         selectErrorWindow.classList.add('invisible');
         [firstList.value, secondList.value] = [secondList.value, firstList.value];
         swapButton.classList.toggle('rotate');
@@ -117,7 +116,7 @@ swapButton.addEventListener('click', () => {
     } else {
         selectErrorWindow.classList.remove('invisible');
     }
-   
+
 })
 
 crossButton.addEventListener('click', () => {

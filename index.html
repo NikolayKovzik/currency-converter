@@ -31,47 +31,33 @@
             <h2>Actual exchange rate</h2>
             <form class="converter">
                 <div class="container input-wrapper">
-                    <label>Select the currency you want to exchange:</label>
-                    <select class="first-list">
-                        <option value="AUD">AUD</option>
-                        <option value="AZN">AZN</option>
-                        <option value="BYN" selected>BYN</option>
-                        <option value="BRL">BRL</option>
-                        <option value="CAD">CAD</option>
-                        <option value="CHF">CHF</option>
-                        <option value="CNY">CNY</option>
-                        <option value="COP">COP</option>
-                        <option value="DKK">DKK</option>
-                        <option value="EGP">EGP</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="HKD">HKD</option>
-                        <option value="ISK">ISK</option>
-                        <option value="IDR">IDR</option>
-                        <option value="IRR">IRR</option>
-                        <option value="ILS">ILS</option>
-                        <option value="JPY">JPY</option>
-                        <option value="KZT">KZT</option>
-                        <option value="KWD">KWD</option>
-                        <option value="MXN">MXN</option>
-                        <option value="NZD">NZD</option>
-                        <option value="KPW">KPW</option>
-                        <option value="PKR">PKR</option>
-                        <option value="PLN">PLN</option>
-                        <option value="QAR">QAR</option>
-                        <option value="RUB">RUB</option>
-                        <option value="SAR">SAR</option>
-                        <option value="SGD">SGD</option>
-                        <option value="SEK">SEK</option>
-                        <option value="TWD">TWD</option>
-                        <option value="UAH">UAH</option>
-                        <option value="USD">USD</option>
-                        <option value="ZAR">ZAR</option>
-                    </select>
-                    <label for="currency-input">Enter quantity:</label>
+                    <div class="currency-selector-wrapper">
+                        <label class="select-label">Select the currency you want to exchange:</label>
+                        <select class="first-list">
+                            <option value="AUD">AUD</option>
+                            <option value="AZN">AZN</option>
+                            <option value="BYN" selected>BYN</option>
+                            <option value="BRL">BRL</option>
+                            <option value="CAD">CAD</option>
+                            <option value="CHF">CHF</option>
+                            <option value="CNY">CNY</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="HKD">HKD</option>
+                            <option value="JPY">JPY</option>
+                            <option value="KZT">KZT</option>
+                            <option value="PLN">PLN</option>
+                            <option value="RUB">RUB</option>
+                            <option value="TWD">TWD</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+                    
                     <div class="quantity-wrapper">
+                        <label class="quantity-label" for="currency-input">Enter quantity:</label>
                         <!-- type=text for custom input validation function-->
-                        <input class="exchange-input" type="text" id="currency-input" placeholder="0" value="1" autocomplete="off">
+                        <input class="exchange-input" type="text" id="currency-input" placeholder="0" value="1"
+                            autocomplete="off">
                         <div class="cross-wrapper">
                             <img class="cross" src="./assets/img/cross.png" alt="cross">
                         </div>
@@ -83,9 +69,9 @@
                     </div>
                     <input class="convert-button button" type="submit" value="convert">
                 </div>
-                <div class="container outcome-wrapper">
-                    <label>Hold CTRL, and select currencies you want to convert to:</label>
-                    <select class="second-list" multiple>
+                <div class="container multiselect-wrapper">
+                    <label class="multiselect-label">Hold CTRL, and select currencies you want to convert to:</label>
+                    <select class="second-list" multiple size="6">
                         <option value="AUD">AUD</option>
                         <option value="AZN">AZN</option>
                         <option value="BYN">BYN</option>
@@ -93,37 +79,18 @@
                         <option value="CAD">CAD</option>
                         <option value="CHF">CHF</option>
                         <option value="CNY">CNY</option>
-                        <option value="COP">COP</option>
-                        <option value="DKK">DKK</option>
-                        <option value="EGP">EGP</option>
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>
                         <option value="HKD">HKD</option>
-                        <option value="ISK">ISK</option>
-                        <option value="IDR">IDR</option>
-                        <option value="IRR">IRR</option>
-                        <option value="ILS">ILS</option>
                         <option value="JPY">JPY</option>
                         <option value="KZT">KZT</option>
-                        <option value="KWD">KWD</option>
-                        <option value="MXN">MXN</option>
-                        <option value="NZD">NZD</option>
-                        <option value="KPW">KPW</option>
-                        <option value="PKR">PKR</option>
                         <option value="PLN">PLN</option>
-                        <option value="QAR">QAR</option>
                         <option value="RUB">RUB</option>
-                        <option value="SAR">SAR</option>
-                        <option value="SGD">SGD</option>
-                        <option value="SEK">SEK</option>
                         <option value="TWD">TWD</option>
-                        <option value="UAH">UAH</option>
                         <option value="USD" selected>USD</option>
-                        <option value="ZAR">ZAR</option>
                     </select>
-                   
-                    <div class="actual-output-wrapper">
-                    </div>
+                </div>
+                <div class="actual-output-wrapper">
                 </div>
             </form>
         </section>
@@ -217,12 +184,12 @@
             <p>You can't watch course from the future! Please select a valid date.</p>
             <button class="close-history-error button">OK</button>
         </article>
-             
+
         <article class="error select-error invisible">
             <h2>Error!</h2>
-             <p>Please select one currency in multiple input to swap.</p>
-             <button class="close-select-error button">OK</button>
-        </article>  
+            <p>Please select one currency in multiple input to swap.</p>
+            <button class="close-select-error button">OK</button>
+        </article>
     </main>
     <footer class="footer wrapper">
         <div class="footer-wrapper">

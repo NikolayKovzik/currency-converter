@@ -1,4 +1,4 @@
-import {exchangeInput, secondList} from "./app.js"
+import { exchangeInput, secondList } from "./app.js"
 const decimal = '0123456789.';
 
 export function isNotFuture(date) {
@@ -7,7 +7,7 @@ export function isNotFuture(date) {
 
     if (arr[0] > now.getFullYear()) {
         return false;
-    } else if ((arr[1] > (now.getMonth() + 1)) && arr[0]===now.getFullYear()) {
+    } else if ((arr[1] > (now.getMonth() + 1)) && arr[0] === now.getFullYear()) {
         return false;
     } else if ((arr[2] > now.getDate()) && (arr[1] === (now.getMonth() + 1)) && (arr[0] === now.getFullYear())) {
         return false;
@@ -18,27 +18,33 @@ export function isNotFuture(date) {
 
 export function inputValidation() {
     let flag = 0;
-    exchangeInput.value = (exchangeInput.value).split('').map((symbol)=>{
-        if(!decimal.includes(symbol)){
+    exchangeInput.value = (exchangeInput.value).split('').map((symbol) => {
+        if (!decimal.includes(symbol)) {
             return '';
-        } else if(symbol!=='.') {
+        } else if (symbol !== '.') {
             return symbol;
-        } else if(++flag <= 1){
+        } else if (++flag <= 1) {
             return symbol;
-        } else { 
+        } else {
             --flag;
             return '';
         }
-   }).join('');
+    }).join('');
 }
 
-export function historyDataValidation(data,currency,coef) {
-    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`]*coef).toFixed(2) 
-                                                           : 'no results';
+
+export function historyDataValidation(data, currency, coef) {
+    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`] * coef).toFixed(2)
+        : 'no results';
 }
 
-export function actualDataValidation(currencyRate){
-    if(currencyRate){
-        return (exchangeInput.value * currencyRate).toFixed(2)
-    } else return 'no results';
+export function actualDataValidation(currencyRate) {
+    let result = exchangeInput.value * currencyRate;
+    if (!currencyRate) {
+        return 'no results';
+    } else if ( result< 9e10) {
+        return result.toFixed(2)
+    } else if(result< 9e20){
+        return result.toString()[0] + 'e' + (result.toString().length - 1);
+    } else return 'too big number'
 }
