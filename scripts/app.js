@@ -1,3 +1,4 @@
+import {isNotFuture, inputValidation, historyDataValidation, actualDataValidation} from './validationFunctions.js'
 //const DF_API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
 //const DF_BASE_URL = "http://data.fixer.io/api/";
 
@@ -13,8 +14,8 @@ const OEXR_BASE_URL = "https://openexchangerates.org/api/";
 const converter = document.querySelector('.converter');
 const datepickerForm = document.querySelector('.datepicker-form');
 const firstList = document.querySelector('.first-list');
-const secondList = document.querySelector('.second-list');
-const exchangeInput = document.querySelector('.exchange-input');
+export const secondList = document.querySelector('.second-list');
+export const exchangeInput = document.querySelector('.exchange-input');
 const exchangeOutput = document.querySelector('.exchange-output');
 const displayInputs = document.querySelectorAll('.display-output');
 const errorWindow = document.querySelector('.error');
@@ -24,7 +25,6 @@ const crossButton = document.querySelector('.cross');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
-const decimal = '0123456789.';
 
 async function getData(link) {
     let response = await fetch(link)
@@ -34,49 +34,11 @@ async function getData(link) {
 }
 
 
-function isNotFuture(date) {
-    let arr = date.split('-').map((item) => +item);
-    let now = new Date;
-
-    if (arr[0] > now.getFullYear()) {
-        return false;
-    } else if ((arr[1] > (now.getMonth() + 1)) && arr[0]===now.getFullYear()) {
-        return false;
-    } else if ((arr[2] > now.getDate()) && (arr[1] === (now.getMonth() + 1)) && (arr[0] === now.getFullYear())) {
-        return false;
-    }
-    return true;
-}
-
-
-function inputValidation() {
-    let flag = 0;
-    exchangeInput.value = (exchangeInput.value).split('').map((symbol)=>{
-        if(!decimal.includes(symbol)){
-            return '';
-        } else if(symbol!=='.') {
-            return symbol;
-        } else if(++flag <= 1){
-            return symbol;
-        } else { 
-            --flag;
-            return '';
-        }
-   }).join('');
-}
-
-function dataValidation(data,item) {
-    return (data['rates'][`${item.getAttribute('name')}`]) ? (data['rates'][`${item.getAttribute('name')}`]).toFixed(2) 
-                                                           : 'no results';
-}
-
-
-
 converter.onsubmit = async (event) => {
     event.preventDefault();
     if (exchangeInput.value && exchangeInput.value > 0) {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
-        exchangeOutput.value = (exchangeInput.value * data.conversion_rates[secondList.value]).toFixed(2);
+        exchangeOutput.value = actualDataValidation(data);
     }
 };
 
@@ -87,7 +49,7 @@ datepickerForm.onsubmit = async (event) => {
         errorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
         displayInputs.forEach((item)=>{
-            item.value = dataValidation(data,item);
+            item.value = historyDataValidation(data,item);
         })
     } else {
         errorWindow.classList.remove('invisible');
