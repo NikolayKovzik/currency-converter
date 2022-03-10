@@ -19,8 +19,10 @@ const thirdList = document.querySelector('.third-list');
 export const exchangeInput = document.querySelector('.exchange-input');
 const exchangeOutput = document.querySelector('.exchange-output');
 const displayInputs = document.querySelectorAll('.display-output');
-const errorWindow = document.querySelector('.error');
-const closeWindow = document.querySelector('.close-window');
+const historyErrorWindow = document.querySelector('.history-error');
+const selectErrorWindow = document.querySelector('.select-error');
+const closeHistoryError = document.querySelector('.close-history-error');
+const closeSelectError = document.querySelector('.close-select-error');
 const swapButton = document.querySelector('.swap-img');
 const crossButton = document.querySelector('.cross');
 // const convertButton = document.querySelector('.convert-button');
@@ -34,20 +36,35 @@ async function getData(link) {
     return data;
 }
 
+function getArrayOfSelectedValues(){
+    let array = [];
+    for (let option of secondList.options)
+    {
+        if (option.selected) {
+            array.push(option.value);
+        }
+    }
+    console.log(array);
+    return array;
+}
+
 
 converter.onsubmit = async (event) => {
     event.preventDefault();
-    if (exchangeInput.value && exchangeInput.value > 0) {
-        let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
-        exchangeOutput.value = actualDataValidation(data);
-    }
+    let selected = getArrayOfSelectedValues();
+    // if (exchangeInput.value && exchangeInput.value > 0) {
+    //     let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
+    //     exchangeOutput.value = actualDataValidation(data);
+    // } else{
+    //      
+    // }
 };
 
 
 datepickerForm.onsubmit = async (event) => {
     event.preventDefault();
     if (datepicker.value && isNotFuture(datepicker.value)) {
-        errorWindow.classList.add('invisible');
+        historyErrorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
 
         if (historyDataValidation(data, thirdList.value,1) !== 'no results' && historyDataValidation(data, 'USD',1) !== 'no results') {
@@ -66,20 +83,31 @@ datepickerForm.onsubmit = async (event) => {
         }
 
     } else {
-        errorWindow.classList.remove('invisible');
+        historyErrorWindow.classList.remove('invisible');
     }
 };
 
 
-closeWindow.addEventListener('click', () => {
-    errorWindow.classList.add('invisible');
+closeHistoryError.addEventListener('click', () => {
+    historyErrorWindow.classList.add('invisible');
+})
+
+closeSelectError.addEventListener('click', () => {
+    selectErrorWindow.classList.add('invisible');
 })
 
 swapButton.addEventListener('click', () => {
-    [firstList.value, secondList.value] = [secondList.value, firstList.value];
-    swapButton.classList.toggle('rotate');
-    exchangeInput.value = '';
-    exchangeOutput.value = '';
+    let selected = getArrayOfSelectedValues();
+    if(selected.length === 1) {
+        selectErrorWindow.classList.add('invisible');
+        [firstList.value, secondList.value] = [secondList.value, firstList.value];
+        swapButton.classList.toggle('rotate');
+        exchangeInput.value = '';
+        exchangeOutput.value = '';
+    } else {
+        selectErrorWindow.classList.remove('invisible');
+    }
+   
 })
 
 crossButton.addEventListener('click', () => {

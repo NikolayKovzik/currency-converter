@@ -55,7 +55,8 @@ body {
 
 }
 
-select {
+.first-list,
+.third-list {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;

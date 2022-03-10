@@ -84,8 +84,8 @@
                     <input class="convert-button button" type="submit" value="convert">
                 </div>
                 <div class="container outcome-wrapper">
-                    <label>Select the currency you want to convert to:</label>
-                    <select class="second-list">
+                    <label>Hold CTRL, and select currencies you want to convert to:</label>
+                    <select class="second-list" multiple>
                         <option value="AUD">AUD</option>
                         <option value="AZN">AZN</option>
                         <option value="BYN">BYN</option>
@@ -213,11 +213,17 @@
             </form>
         </section>
 
-        <article class="error invisible">
+        <article class="error history-error invisible">
             <h2>Error!</h2>
             <p>You can't watch course from the future! Please select a valid date.</p>
-            <button class="close-window button">OK</button>
+            <button class="close-history-error button">OK</button>
         </article>
+             
+        <article class="error select-error invisible">
+            <h2>Error!</h2>
+             <p>Please select one currency in multiple input to swap.</p>
+             <button class="close-select-error button">OK</button>
+        </article>  
     </main>
     <footer class="footer wrapper">
         <div class="footer-wrapper">
