@@ -37,8 +37,8 @@ export function historyDataValidation(data,currency,coef) {
                                                            : 'no results';
 }
 
-export function actualDataValidation(data){
-    if(data.conversion_rates[secondList.value]){
-        return (exchangeInput.value * data.conversion_rates[secondList.value]).toFixed(2)
+export function actualDataValidation(currencyRate){
+    if(currencyRate){
+        return (exchangeInput.value * currencyRate).toFixed(2)
     } else return 'no results';
 }

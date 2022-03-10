@@ -17,6 +17,7 @@ const firstList = document.querySelector('.first-list');
 export const secondList = document.querySelector('.second-list');
 const thirdList = document.querySelector('.third-list');
 export const exchangeInput = document.querySelector('.exchange-input');
+const actualOutputWrapper = document.querySelector('.actual-output-wrapper');
 const exchangeOutput = document.querySelector('.exchange-output');
 const displayInputs = document.querySelectorAll('.display-output');
 const historyErrorWindow = document.querySelector('.history-error');
@@ -28,6 +29,7 @@ const crossButton = document.querySelector('.cross');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
+let labelFlag = false;
 
 async function getData(link) {
     let response = await fetch(link)
@@ -44,7 +46,6 @@ function getArrayOfSelectedValues(){
             array.push(option.value);
         }
     }
-    console.log(array);
     return array;
 }
 
@@ -52,12 +53,21 @@ function getArrayOfSelectedValues(){
 converter.onsubmit = async (event) => {
     event.preventDefault();
     let selected = getArrayOfSelectedValues();
-    // if (exchangeInput.value && exchangeInput.value > 0) {
-    //     let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
-    //     exchangeOutput.value = actualDataValidation(data);
-    // } else{
-    //      
-    // }
+    console.log(selected);
+    
+    if (exchangeInput.value && exchangeInput.value > 0) {
+        let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
+        
+        if(!labelFlag){
+            actualOutputWrapper.insertAdjacentHTML('beforebegin',`<label>Result:</label>`);
+            labelFlag = true;
+        }  
+        let content = document.querySelectorAll('.exchange-output');
+        content.forEach((item)=>item.remove());
+        selected.forEach((currency)=>{
+            actualOutputWrapper.insertAdjacentHTML('beforeend',`<output class="exchange-output">${currency}:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+        })
+    } 
 };
 
 
