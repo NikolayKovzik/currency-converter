@@ -16,7 +16,7 @@ const firstList = document.querySelector('.first-list');
 const secondList = document.querySelector('.second-list');
 const exchangeInput = document.querySelector('.exchange-input');
 const exchangeOutput = document.querySelector('.exchange-output');
-const displayInputs = document.querySelectorAll('.display-input');
+const displayInputs = document.querySelectorAll('.display-output');
 const errorWindow = document.querySelector('.error');
 const closeWindow = document.querySelector('.close-window');
 const swapButton = document.querySelector('.swap-img');
@@ -24,6 +24,7 @@ const crossButton = document.querySelector('.cross');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
+const decimal = '0123456789.';
 
 async function getData(link) {
     let response = await fetch(link)
@@ -48,11 +49,32 @@ function isNotFuture(date) {
 }
 
 
+function inputValidation() {
+    let flag = 0;
+    exchangeInput.value = (exchangeInput.value).split('').map((symbol)=>{
+        if(!decimal.includes(symbol)){
+            return '';
+        } else if(symbol!=='.') {
+            return symbol;
+        } else if(++flag <= 1){
+            return symbol;
+        } else { 
+            --flag;
+            return '';
+        }
+   }).join('');
+}
+
+function dataValidation(data,item) {
+    return (data['rates'][`${item.getAttribute('name')}`]) ? (data['rates'][`${item.getAttribute('name')}`]).toFixed(2) 
+                                                           : 'no results';
+}
+
 
 
 converter.onsubmit = async (event) => {
     event.preventDefault();
-    if (exchangeInput.value) {
+    if (exchangeInput.value && exchangeInput.value > 0) {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
         exchangeOutput.value = (exchangeInput.value * data.conversion_rates[secondList.value]).toFixed(2);
     }
@@ -65,8 +87,7 @@ datepickerForm.onsubmit = async (event) => {
         errorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
         displayInputs.forEach((item)=>{
-            item.value = (data['rates'][`${item.getAttribute('name')}`]) ? (data['rates'][`${item.getAttribute('name')}`]).toFixed(2) 
-                                                                                  : 'no results';
+            item.value = dataValidation(data,item);
         })
     } else {
         errorWindow.classList.remove('invisible');
@@ -81,8 +102,16 @@ closeWindow.addEventListener('click', ()=>{
 swapButton.addEventListener('click', ()=>{
     [firstList.value,secondList.value] =  [secondList.value,firstList.value];
     swapButton.classList.toggle('rotate');
+    exchangeInput.value = '';
+    exchangeOutput.value = '';
 })
 
 crossButton.addEventListener('click', ()=>{
     exchangeInput.value = '';
 })
+
+
+
+
+exchangeInput.addEventListener('input', inputValidation)
+

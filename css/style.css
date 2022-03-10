@@ -2,7 +2,7 @@
 
 html {
     box-sizing: border-box;
-    font-size: 1.5vw;
+    font-size: 22px;
 }
 
 *, *::after, *::before {
@@ -44,6 +44,7 @@ body {
     color: #000000;
     background-color: #bdae82;
     border: 0;
+    border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
 }
@@ -203,6 +204,7 @@ section {
     width: 90%;
     background-color: var(--light);
     padding: 1vw;
+    border-radius: 10px;
 }
 
 
