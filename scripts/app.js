@@ -14,12 +14,13 @@ const converter = document.querySelector('.converter');
 const datepickerForm = document.querySelector('.datepicker-form');
 const firstList = document.querySelector('.first-list');
 const secondList = document.querySelector('.second-list');
-const firstInput = document.querySelector('.first-input');
-const secondInput = document.querySelector('.second-input');
+const exchangeInput = document.querySelector('.exchange-input');
+const exchangeOutput = document.querySelector('.exchange-output');
 const displayInputs = document.querySelectorAll('.display-input');
 const errorWindow = document.querySelector('.error');
 const closeWindow = document.querySelector('.close-window');
 const swapButton = document.querySelector('.swap-img');
+const crossButton = document.querySelector('.cross');
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
 const datepicker = document.querySelector('.datepicker');
@@ -51,9 +52,9 @@ function isNotFuture(date) {
 
 converter.onsubmit = async (event) => {
     event.preventDefault();
-    if (firstInput.value) {
+    if (exchangeInput.value) {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
-        secondInput.value = (firstInput.value * data.conversion_rates[secondList.value]).toFixed(2);
+        exchangeOutput.value = (exchangeInput.value * data.conversion_rates[secondList.value]).toFixed(2);
     }
 };
 
@@ -79,4 +80,9 @@ closeWindow.addEventListener('click', ()=>{
 
 swapButton.addEventListener('click', ()=>{
     [firstList.value,secondList.value] =  [secondList.value,firstList.value];
+    swapButton.classList.toggle('rotate');
+})
+
+crossButton.addEventListener('click', ()=>{
+    exchangeInput.value = '';
 })

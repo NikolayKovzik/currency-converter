@@ -30,7 +30,7 @@
         <section class="converter-wrapper">
             <h2>Actual exchange rate</h2>
             <form class="converter">
-                <div class="container first-wrapper">
+                <div class="container input-wrapper">
                     <label>Select the currency you want to exchange:</label>
                     <select class="first-list">
                         <option value="AUD">AUD</option>
@@ -69,8 +69,12 @@
                         <option value="ZAR">ZAR</option>
                     </select>
                     <label for="currency-input">Enter quantity:</label>
-                    <input class="first-input" type="number" id="currency-input" placeholder="0" value="1"
-                        autocomplete="off">
+                    <div class="quantity-wrapper">
+                        <input class="exchange-input" type="number" id="currency-input" placeholder="0" value="1" autocomplete="off">
+                        <div class="cross-wrapper">
+                            <img class="cross" src="./assets/img/cross.png" alt="cross">
+                        </div>
+                    </div>
                 </div>
                 <div class="buttons-wrapper">
                     <div class="swap-wrapper">
@@ -78,7 +82,7 @@
                     </div>
                     <input class="convert-button button" type="submit" value="convert">
                 </div>
-                <div class="container second-wrapper">
+                <div class="container outcome-wrapper">
                     <label>Select the currency you want to convert to:</label>
                     <select class="second-list">
                         <option value="AUD">AUD</option>
@@ -117,7 +121,9 @@
                         <option value="ZAR">ZAR</option>
                     </select>
                     <label>Result:</label>
-                    <input class="second-input" type="number" disabled>
+                    <div class="output-wrapper">
+                        <output class="exchange-output"></output>
+                    </div>
                 </div>
             </form>
         </section>

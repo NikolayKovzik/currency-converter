@@ -16,8 +16,8 @@ html {
     --text: #000;
     --text-hover: #fff;
 
-    --modal-window: rgb(190, 138, 138);
-    --modal-button: rgb(172, 123, 123);
+    --modal-window: #be8a8a;
+    --modal-button: #ac7b7b;
 }
 
 
@@ -63,6 +63,18 @@ select {
     /*0, 0;*/
     background-size: 2vh auto, 100%;
     background-repeat: no-repeat;
+}
+
+/* remove arrows Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 select:focus,
@@ -215,6 +227,27 @@ section {
     width: 30%;
 }
 
+.exchange-input {
+    padding-right: 25px;
+}
+
+.quantity-wrapper{
+    position: relative;
+}
+
+.cross-wrapper{
+    position: absolute;
+    right: 80px;
+    top: 4px;
+}
+
+.cross{
+    cursor: pointer; 
+    width: 25px;
+    height: 25px;
+    transition: .5s;
+}
+
 
 .buttons-wrapper {
     display: flex;
@@ -234,8 +267,12 @@ section {
     height: 60px;
     width: 60px;
     cursor: pointer;
+    transition: .3s;
 }
 
+.swap-img.rotate {
+    transform: rotate(360deg);
+}
 
 
 
@@ -267,7 +304,8 @@ section {
 .output-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 200px;
+    height: 30px;
     background-color: white;
 }
 
