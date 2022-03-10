@@ -1,4 +1,4 @@
-import {isNotFuture, inputValidation, historyDataValidation, actualDataValidation} from './validationFunctions.js'
+import { isNotFuture, inputValidation, historyDataValidation, actualDataValidation } from './validationFunctions.js'
 //const DF_API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
 //const DF_BASE_URL = "http://data.fixer.io/api/";
 
@@ -15,6 +15,7 @@ const converter = document.querySelector('.converter');
 const datepickerForm = document.querySelector('.datepicker-form');
 const firstList = document.querySelector('.first-list');
 export const secondList = document.querySelector('.second-list');
+const thirdList = document.querySelector('.third-list');
 export const exchangeInput = document.querySelector('.exchange-input');
 const exchangeOutput = document.querySelector('.exchange-output');
 const displayInputs = document.querySelectorAll('.display-output');
@@ -48,31 +49,42 @@ datepickerForm.onsubmit = async (event) => {
     if (datepicker.value && isNotFuture(datepicker.value)) {
         errorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
-        displayInputs.forEach((item)=>{
-            item.value = historyDataValidation(data,item);
-        })
+
+        if (historyDataValidation(data, thirdList.value,1) !== 'no results' && historyDataValidation(data, 'USD',1) !== 'no results') {
+            let coef = data['rates']['USD']/data['rates'][`${thirdList.value}`];
+            displayInputs.forEach((item) => {
+                if(item.getAttribute('name') === thirdList.value){
+                    item.value = 1
+                } else{
+                    item.value = historyDataValidation(data,item.getAttribute('name'),coef);
+                }
+            })
+        } else {
+            displayInputs.forEach((item) => {
+                item.value = 'no results';
+            })
+        }
+
     } else {
         errorWindow.classList.remove('invisible');
     }
 };
 
 
-closeWindow.addEventListener('click', ()=>{
+closeWindow.addEventListener('click', () => {
     errorWindow.classList.add('invisible');
 })
 
-swapButton.addEventListener('click', ()=>{
-    [firstList.value,secondList.value] =  [secondList.value,firstList.value];
+swapButton.addEventListener('click', () => {
+    [firstList.value, secondList.value] = [secondList.value, firstList.value];
     swapButton.classList.toggle('rotate');
     exchangeInput.value = '';
     exchangeOutput.value = '';
 })
 
-crossButton.addEventListener('click', ()=>{
+crossButton.addEventListener('click', () => {
     exchangeInput.value = '';
 })
-
-
 
 
 exchangeInput.addEventListener('input', inputValidation)

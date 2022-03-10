@@ -32,8 +32,8 @@ export function inputValidation() {
    }).join('');
 }
 
-export function historyDataValidation(data,item) {
-    return (data['rates'][`${item.getAttribute('name')}`]) ? (data['rates'][`${item.getAttribute('name')}`]).toFixed(2) 
+export function historyDataValidation(data,currency,coef) {
+    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`]*coef).toFixed(2) 
                                                            : 'no results';
 }
 
