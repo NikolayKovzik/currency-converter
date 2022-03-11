@@ -1,23 +1,20 @@
 import { isNotFuture, inputValidation, historyDataValidation, actualDataValidation } from './validationFunctions.js'
-//const DF_API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
-//const DF_BASE_URL = "http://data.fixer.io/api/";
+import { translateObject } from './translate.js';
 
-/*OLD
-//use for actual courses, 250 per month
+
+//OLD KEYS
 const EXR_API_KEY = "5b0ec37250a51e6d43357326";
-const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
-//use for history queries, 1000 per month
 const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
-const OEXR_BASE_URL = "https://openexchangerates.org/api/";
-*/
 
-/*NEW*/
+//NEW KEYS
+// const EXR_API_KEY = "980a7ed07a511424d64c08be";
+// const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
+
 //use for actual courses, 250 per month
-const EXR_API_KEY = "980a7ed07a511424d64c08be";
 const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
 //use for history queries, 1000 per month
-const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
 const OEXR_BASE_URL = "https://openexchangerates.org/api/";
+
 
 const converter = document.querySelector('.converter');
 const datepickerForm = document.querySelector('.datepicker-form');
@@ -38,12 +35,16 @@ export const historyInput = document.querySelector('.history-input');
 const historyOutputs = document.querySelector('.history-outputs');
 const firstHistoryColumn = document.querySelector('.first-history-column');
 const secondHistoryColumn = document.querySelector('.second-history-column');
-// const displayOutputs = document.querySelectorAll('.display-output');
 const historyErrorWindow = document.querySelector('.history-error');
 const closeHistoryError = document.querySelector('.close-history-error');
 const historyCrossButton = document.querySelector('.history-cross');
 const datepicker = document.querySelector('.datepicker');
 let historyLabelFlag = false;
+
+const switchLang = document.querySelector('.switch-lang');
+const searchButton = document.querySelector('.search-button');
+const convertButton = document.querySelector('.convert-button');
+let lang = 'en';
 
 async function getData(link) {
     let response = await fetch(link)
@@ -74,7 +75,7 @@ converter.onsubmit = async (event) => {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
 
         if (!actualLabelFlag) {
-            actualOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            actualOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label" data-translate="result">${lang==='en'? 'Result':'Результат'}:</label>`);
             actualLabelFlag = true;
         }
         clearOutput('exchange');
@@ -99,7 +100,7 @@ datepickerForm.onsubmit = async (event) => {
 
         let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
         if (!historyLabelFlag) {
-            historyOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            historyOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label" data-translate="result">${lang==='en'? 'Result':'Результат'}:</label>`);
             historyLabelFlag = true;
         }
         clearOutput('history');
@@ -153,4 +154,38 @@ historyCrossButton.addEventListener('click', () => {
 
 exchangeInput.addEventListener('input', () => { inputValidation(exchangeInput) })
 historyInput.addEventListener('input', () => { inputValidation(historyInput) })
+
+
+
+
+
+/* Translate page*/
+
+
+function translatePage(language) {
+    let data = document.querySelectorAll('[data-translate]');
+    for (let currentElement of data) {
+        currentElement.textContent = translateObject[language][currentElement.getAttribute('data-translate')];
+    }
+
+    (language === 'ru') ? (document.querySelector('.en').classList.remove('active'),
+                           document.querySelector('.ru').classList.add('active'),
+                           searchButton.value = 'Поиск',
+                           convertButton.value = 'Конвертировать',
+                           lang = 'ru')
+
+                        : (document.querySelector('.ru').classList.remove('active'),
+                        document.querySelector('.en').classList.add('active'),
+                        searchButton.value = 'Search',
+                        convertButton.value = 'Convert',
+                        lang = 'en');
+
+}
+
+function chooseLangButton(event) {
+    if (event.target.dataset.switch)
+        translatePage(event.target.dataset.switch);
+}
+
+switchLang.addEventListener('click', chooseLangButton)
 

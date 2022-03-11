@@ -20,7 +20,6 @@ html {
     --modal-button: #ac7b7b;
 }
 
-
 body {
     font-family: "Didact Gothic";
     font-style: normal;
@@ -141,7 +140,7 @@ h1 {
 }
 
 .logo-wrapper {
-    /* margin-left: auto; */
+    margin-left: auto;
 }
 
 .logo {
