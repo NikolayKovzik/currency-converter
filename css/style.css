@@ -308,6 +308,11 @@ section {
     margin-top: 85px;
 }
 
+.ru-button {
+    width: 125px;
+    font-size: 16px;
+}
+
 .swap-wrapper {
     display: flex;
     justify-content: center;

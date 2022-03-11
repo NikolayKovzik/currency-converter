@@ -1,5 +1,6 @@
 import { isNotFuture, inputValidation, historyDataValidation, actualDataValidation } from './validationFunctions.js'
-import { translateObject } from './translate.js';
+import { chooseLangButton } from './translate.js';
+import { lang } from './translate.js';
 
 
 //OLD KEYS
@@ -42,9 +43,6 @@ const datepicker = document.querySelector('.datepicker');
 let historyLabelFlag = false;
 
 const switchLang = document.querySelector('.switch-lang');
-const searchButton = document.querySelector('.search-button');
-const convertButton = document.querySelector('.convert-button');
-let lang = 'en';
 
 async function getData(link) {
     let response = await fetch(link)
@@ -161,31 +159,6 @@ historyInput.addEventListener('input', () => { inputValidation(historyInput) })
 
 /* Translate page*/
 
-
-function translatePage(language) {
-    let data = document.querySelectorAll('[data-translate]');
-    for (let currentElement of data) {
-        currentElement.textContent = translateObject[language][currentElement.getAttribute('data-translate')];
-    }
-
-    (language === 'ru') ? (document.querySelector('.en').classList.remove('active'),
-                           document.querySelector('.ru').classList.add('active'),
-                           searchButton.value = 'Поиск',
-                           convertButton.value = 'Конвертировать',
-                           lang = 'ru')
-
-                        : (document.querySelector('.ru').classList.remove('active'),
-                        document.querySelector('.en').classList.add('active'),
-                        searchButton.value = 'Search',
-                        convertButton.value = 'Convert',
-                        lang = 'en');
-
-}
-
-function chooseLangButton(event) {
-    if (event.target.dataset.switch)
-        translatePage(event.target.dataset.switch);
-}
 
 switchLang.addEventListener('click', chooseLangButton)
 

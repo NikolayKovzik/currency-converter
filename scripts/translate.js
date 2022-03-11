@@ -1,4 +1,4 @@
-export const translateObject = {
+const translateObject = {
     'en': {
         'exchange-rate': 'Actual exchange rate',
         'currency-select': 'Select the currency you want to exchange:',
@@ -24,4 +24,35 @@ export const translateObject = {
         'error-future': 'Нельзя посмотреть курс на это число. Пожалуйста, введите корректную дату.',
         'error-select': 'Для свапа выберите одну валюту из списка.',
     }
+}
+
+const searchButton = document.querySelector('.search-button');
+const convertButton = document.querySelector('.convert-button');
+export let lang = 'en';
+
+function translatePage(language) {
+    let data = document.querySelectorAll('[data-translate]');
+    for (let currentElement of data) {
+        currentElement.textContent = translateObject[language][currentElement.getAttribute('data-translate')];
+    }
+
+    (language === 'ru') ? (document.querySelector('.en').classList.remove('active'),
+                           document.querySelector('.ru').classList.add('active'),
+                           searchButton.value = 'Поиск',
+                           convertButton.value = 'Конвертировать',
+                           convertButton.classList.add('ru-button'),
+                           lang = 'ru')
+
+                        : (document.querySelector('.ru').classList.remove('active'),
+                        document.querySelector('.en').classList.add('active'),
+                        searchButton.value = 'Search',
+                        convertButton.value = 'Convert',
+                        convertButton.classList.remove('ru-button'),
+                        lang = 'en');
+
+}
+
+export function chooseLangButton(event) {
+    if (event.target.dataset.switch)
+        translatePage(event.target.dataset.switch);
 }
