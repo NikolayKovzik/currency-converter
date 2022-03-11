@@ -36,19 +36,21 @@ function translatePage(language) {
         currentElement.textContent = translateObject[language][currentElement.getAttribute('data-translate')];
     }
 
-    (language === 'ru') ? (document.querySelector('.en').classList.remove('active'),
-                           document.querySelector('.ru').classList.add('active'),
-                           searchButton.value = 'Поиск',
-                           convertButton.value = 'Конвертировать',
-                           convertButton.classList.add('ru-button'),
-                           lang = 'ru')
-
-                        : (document.querySelector('.ru').classList.remove('active'),
-                        document.querySelector('.en').classList.add('active'),
-                        searchButton.value = 'Search',
-                        convertButton.value = 'Convert',
-                        convertButton.classList.remove('ru-button'),
-                        lang = 'en');
+    if (language === 'ru') {
+        (document.querySelector('.en').classList.remove('active'),
+            document.querySelector('.ru').classList.add('active'),
+            searchButton.value = 'Поиск',
+            convertButton.value = 'Конвертировать',
+            convertButton.classList.add('ru-button'),
+            lang = 'ru')
+    } else {
+        (document.querySelector('.ru').classList.remove('active'),
+            document.querySelector('.en').classList.add('active'),
+            searchButton.value = 'Search',
+            convertButton.value = 'Convert',
+            convertButton.classList.remove('ru-button'),
+            lang = 'en');
+    }
 
 }
 

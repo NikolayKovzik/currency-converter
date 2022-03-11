@@ -1,6 +1,6 @@
 import { isNotFuture, inputValidation, historyDataValidation, actualDataValidation } from './validationFunctions.js'
-import { chooseLangButton } from './translate.js';
-import { lang } from './translate.js';
+import { chooseLangButton, lang } from './translate.js';
+import { setLocalStorage, getLocalStorage } from './localStorage.js';
 
 
 //OLD KEYS
@@ -17,11 +17,10 @@ const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
 const OEXR_BASE_URL = "https://openexchangerates.org/api/";
 
 
-const converter = document.querySelector('.converter');
-const datepickerForm = document.querySelector('.datepicker-form');
-const firstList = document.querySelector('.first-list');
-const secondList = document.querySelector('.second-list');
+export const firstList = document.querySelector('.first-list');
+export const secondList = document.querySelector('.second-list');
 export const exchangeInput = document.querySelector('.exchange-input');
+const converter = document.querySelector('.converter');
 const actualOutputs = document.querySelector('.actual-outputs');
 const firstActualColumn = document.querySelector('.first-actual-column');
 const secondActualColumn = document.querySelector('.second-actual-column');
@@ -31,15 +30,16 @@ const swapButton = document.querySelector('.swap-img');
 const exchangeCrossButton = document.querySelector('.exchange-cross');
 let actualLabelFlag = false;
 
-const thirdList = document.querySelector('.third-list');
+export const datepicker = document.querySelector('.datepicker');
+export const thirdList = document.querySelector('.third-list');
 export const historyInput = document.querySelector('.history-input');
+const datepickerForm = document.querySelector('.datepicker-form');
 const historyOutputs = document.querySelector('.history-outputs');
 const firstHistoryColumn = document.querySelector('.first-history-column');
 const secondHistoryColumn = document.querySelector('.second-history-column');
 const historyErrorWindow = document.querySelector('.history-error');
 const closeHistoryError = document.querySelector('.close-history-error');
 const historyCrossButton = document.querySelector('.history-cross');
-const datepicker = document.querySelector('.datepicker');
 let historyLabelFlag = false;
 
 const switchLang = document.querySelector('.switch-lang');
@@ -51,7 +51,7 @@ async function getData(link) {
     return data;
 }
 
-function getArrayOfSelectedValues() {
+export function getArrayOfSelectedValues() {
     let array = [];
     for (let option of secondList.options) {
         if (option.selected) {
@@ -60,6 +60,8 @@ function getArrayOfSelectedValues() {
     }
     return array;
 }
+
+
 
 function clearOutput(type) {
     document.querySelectorAll(`.${type}-output`).forEach((item) => item.remove());
@@ -157,8 +159,10 @@ historyInput.addEventListener('input', () => { inputValidation(historyInput) })
 
 
 
-/* Translate page*/
+
 
 
 switchLang.addEventListener('click', chooseLangButton)
 
+window.addEventListener('beforeunload', ()=>{setLocalStorage(firstList, thirdList, datepicker)});
+window.addEventListener('load', getLocalStorage);
