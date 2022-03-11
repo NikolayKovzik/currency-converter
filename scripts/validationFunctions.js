@@ -34,7 +34,7 @@ export function inputValidation(inputField) {
 
 
 export function historyDataValidation(data, currency, coef) {
-    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`] * coef * historyInput.value).toFixed(2)
+    return (data['rates'][`${currency}`] && coef) ? (data['rates'][`${currency}`] * coef * historyInput.value).toFixed(2)
         : 'no results';
 }
 

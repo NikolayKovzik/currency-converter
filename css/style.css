@@ -348,7 +348,7 @@ section {
 
 /*first section output styles*/
 
-.actual-output-wrapper {
+.outputs-wrapper {
     width: 385px;
 }
 
@@ -385,6 +385,7 @@ section {
 
 /*second section styles*/
 
+
 .datepicker-section,
 .display-section {
     height: 100%;
@@ -397,24 +398,16 @@ section {
     width: 30%;
 }
 
-.display-section {
-    width: 75%;
-}
 
-.output-wrapper {
+
+/* .output-wrapper {
     display: flex;
     justify-content: space-between;
     width: 200px;
     background-color: var(--light)
-}
+} */
 
-.currency-label {
-    width: 23%;
-}
 
-.history-output {
-    width: 72%;
-}
 
 
 

@@ -16,26 +16,26 @@ const datepickerForm = document.querySelector('.datepicker-form');
 const firstList = document.querySelector('.first-list');
 const secondList = document.querySelector('.second-list');
 export const exchangeInput = document.querySelector('.exchange-input');
-const columnsWrapper = document.querySelector('.output-columns-wrapper');
-const firstColumnWrapper = document.querySelector('.first-output-column');
-const secondColumnWrapper = document.querySelector('.second-output-column');
+const actualOutputs = document.querySelector('.actual-outputs');
+const firstActualColumn = document.querySelector('.first-actual-column');
+const secondActualColumn = document.querySelector('.second-actual-column');
 const selectErrorWindow = document.querySelector('.select-error');
 const closeSelectError = document.querySelector('.close-select-error');
 const swapButton = document.querySelector('.swap-img');
 const exchangeCrossButton = document.querySelector('.exchange-cross');
-
-// const convertButton = document.querySelector('.convert-button');
-// const searchButton = document.querySelector('.search-button');
-let labelFlag = false;
+let actualLabelFlag = false;
 
 const thirdList = document.querySelector('.third-list');
 export const historyInput = document.querySelector('.history-input');
-const displayInputs = document.querySelectorAll('.history-output');
+const historyOutputs = document.querySelector('.history-outputs');
+const firstHistoryColumn = document.querySelector('.first-history-column');
+const secondHistoryColumn = document.querySelector('.second-history-column');
+// const displayOutputs = document.querySelectorAll('.display-output');
 const historyErrorWindow = document.querySelector('.history-error');
 const closeHistoryError = document.querySelector('.close-history-error');
 const historyCrossButton = document.querySelector('.history-cross');
 const datepicker = document.querySelector('.datepicker');
-
+let historyLabelFlag = false;
 
 async function getData(link) {
     let response = await fetch(link)
@@ -61,23 +61,22 @@ function clearOutput(type) {
 converter.onsubmit = async (event) => {
     event.preventDefault();
     let selected = getArrayOfSelectedValues();
-    console.log(selected);
 
     if (exchangeInput.value && exchangeInput.value > 0) {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
 
-        if (!labelFlag) {
-            columnsWrapper.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
-            labelFlag = true;
+        if (!actualLabelFlag) {
+            actualOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            actualLabelFlag = true;
         }
         clearOutput('exchange');
         let outputs = 0;
         selected.forEach((currency) => {
             outputs++;
             if (outputs % 2) {
-                firstColumnWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+                firstActualColumn.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
             } else {
-                secondColumnWrapper.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
+                secondActualColumn.insertAdjacentHTML('beforeend', `<output class="exchange-output">${currency}&nbsp;:&nbsp;${actualDataValidation(data.conversion_rates[currency])}</output>`);
             }
         })
     }
@@ -90,19 +89,20 @@ datepickerForm.onsubmit = async (event) => {
         historyErrorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
 
-        if (historyDataValidation(data, thirdList.value, 1) !== 'no results' && historyDataValidation(data, 'USD', 1) !== 'no results') {
-            let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
-            displayInputs.forEach((item) => {
-                if (item.getAttribute('name') === thirdList.value) {
-                    item.value = 1*historyInput.value;
-                } else {
-                    item.value = historyDataValidation(data, item.getAttribute('name'), coef);
-                }
-            })
-        } else {
-            displayInputs.forEach((item) => {
-                item.value = 'no results';
-            })
+        let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
+        if (!historyLabelFlag) {
+            historyOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            historyLabelFlag = true;
+        }
+        clearOutput('history');
+        let outputs = 0;
+        for (let option of thirdList.options) {
+            outputs++;
+            if (outputs % 2) {
+                firstHistoryColumn.insertAdjacentHTML('beforeend', `<output class="history-output">${option.innerText}&nbsp;:&nbsp;${historyDataValidation(data, option.innerText, coef)}</output>`);
+            } else {
+                secondHistoryColumn.insertAdjacentHTML('beforeend', `<output class="history-output">${option.innerText}&nbsp;:&nbsp;${historyDataValidation(data, option.innerText, coef)}</output>`);
+            }
         }
 
     } else {
@@ -143,6 +143,6 @@ historyCrossButton.addEventListener('click', () => {
     clearOutput('history');
 })
 
-exchangeInput.addEventListener('input',()=>{ inputValidation(exchangeInput)})
-historyInput.addEventListener('input', ()=>{ inputValidation(historyInput)})
+exchangeInput.addEventListener('input', () => { inputValidation(exchangeInput) })
+historyInput.addEventListener('input', () => { inputValidation(historyInput) })
 
