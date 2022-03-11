@@ -177,4 +177,34 @@
     .exchange-output {
         font-size: 12px;
     }
+
+
+
+
+
+    .datepicker-section {
+        width: 70%;
+    }
+
+    .search-button {
+        align-self: center;
+    }
+
+    .datepicker-form {
+        gap: 5px;
+    }
+
+    .history-label {
+        height: 35px;
+        margin-bottom: 10px;
+    }
+
+    .datepicker-form .input-wrapper {
+        height: 200px;
+    }
+
+    .datepicker-form .result-label {
+        margin-top: 0px;
+    }
+
 }
