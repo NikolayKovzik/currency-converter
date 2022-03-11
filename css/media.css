@@ -1,0 +1,210 @@
+@media (max-width: 1130px) {
+    html {
+        font-size: 16px;
+    }
+
+    .input-wrapper {
+        gap: 23px;
+    }
+
+    .container {
+        height: 305px;
+    }
+
+    .convert-button {
+        margin-top: 32px;
+    }
+
+    .swap-img {
+        height: 45px;
+        width: 45px;
+    }
+
+    .history-cross, .exchange-cross {
+        width: 15px;
+        height: 15px;
+    }
+
+    .cross-wrapper {
+        top: 44px;
+    }
+
+    .first-list, .third-list {
+        background-size: 14px auto, 100%;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .input-wrapper {
+        width: 25%;
+    }
+
+    .buttons-wrapper {
+        width: 10%;
+    }
+
+    .multiselect-wrapper {
+        width: 25%;
+    }
+
+    .outputs-wrapper {
+        width: 25%;
+    }
+
+    .datepicker-section {
+        width: 30%;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    html {
+        font-size: 14px;
+    }
+
+    .cross-wrapper {
+        top: 40px;
+    }
+}
+
+@media (max-width: 760px) {
+    .convert-button {
+        margin-top: 38px;
+    }
+
+    .convert-button {
+        width: 100%;
+        height: 37px;
+    }
+
+    .search-button {
+        width: 40%;
+    }
+}
+
+
+
+
+@media (max-width: 760px) {
+    form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0px;
+    }
+
+    section {
+        width: 70%;
+    }
+
+    .input-wrapper {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        width: 50%;
+    }
+
+    .container {
+        height: 240px;
+    }
+
+    .currency-selector-wrapper {
+        height: 100px;
+    }
+
+    .quantity-wrapper {
+        height: 61px;
+    }
+
+
+    .buttons-wrapper {
+        flex-direction: row;
+        width: 50%;
+        gap: 30px;
+        padding-top: 0px;
+    }
+
+    .swap-img {
+        transform: rotate(90deg);
+    }
+
+    .convert-button {
+        width: 50%;
+        margin-top: 0px;
+    }
+
+    .multiselect-wrapper {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 70%;
+        height: 150px;
+    }
+
+    .multiselect-label {
+        width: 40%;
+    }
+
+    .second-list {
+        width: 40%;
+    }
+
+
+    .result-label {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .outputs-wrapper {
+        width: 100%;
+    }
+
+    .output-columns-wrapper {
+        flex-direction: column;
+    }
+
+    .first-output-column, .second-output-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .result-label {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    .exchange-output {
+        font-size: 12px;
+    }
+
+
+
+
+
+    .datepicker-section {
+        width: 70%;
+    }
+
+    .search-button {
+        align-self: center;
+    }
+
+    .datepicker-form {
+        gap: 5px;
+    }
+
+    .history-label {
+        height: 35px;
+        margin-bottom: 10px;
+    }
+
+    .datepicker-form .input-wrapper {
+        height: 200px;
+    }
+
+    .datepicker-form .result-label {
+        margin-top: 0px;
+    }
+
+}

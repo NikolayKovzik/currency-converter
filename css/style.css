@@ -1,155 +1,459 @@
+/*common styles*/
+
 html {
     box-sizing: border-box;
+    font-size: 20px;
 }
 
 *, *::after, *::before {
     box-sizing: inherit;
 }
 
-:root {}
+:root {
+    --dark: #4b636e;
+    --grey: #78909c;
+    --light: #a7c0cd;
+    --text: #000;
+    --text-hover: #fff;
+
+    --modal-window: #be8a8a;
+    --modal-button: #ac7b7b;
+}
 
 
 body {
     font-family: "Didact Gothic";
     font-style: normal;
-    font-size: 22px;
     font-weight: 700;
-    color: #fff;
-    background-color: #000;
+    color: var(--text);
+    background-color: var(--dark);
+    background-image: url(../assets/img/background.jpg);
+    background-size: cover;
     margin: 0;
-}
-
-.wrapper {
-    max-width: 1440px;
-    margin: 0 auto;
-    background-color: blue;
-}
-
-
-
-.header {
-    
-}
-
-
-
-
-
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    gap: 3vh;
-}
-
-section {
-    padding: 1vw;
-}
-
-.converter {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1vw;
-    background-color: #fff;
-    height: 25vh;
-    width: 65vw;
-    color: #000;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1vh;
-    height: auto;
-}
-
-.first-wrapper {
 
 }
 
-.button-wrapper {
-    height: max-content;
+.button {
+    display: block;
+    width: 100px;
+    height: 50px;
+    padding: 0px;
+    font-family: inherit;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #000000;
+    background-color: #bdae82;
+    border: 0;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
-select {
+.button:hover {
+    color: #ffffff;
+    background-color: #bdae82;
+
+}
+
+.first-list,
+.third-list {
+    display: block;
+    width: 100%;
+    height: 30px;
+
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     background-image: url('../assets/img/select-arrow.svg');
-    background-position: right 10px top 50%, 0, 0;
-    background-size: 12px auto, 100%;
+    background-position: right 10px top 50%;
+    /*0, 0;*/
+    background-size: 20px auto, 100%;
     background-repeat: no-repeat;
+}
+
+/* remove arrows Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input,select {
+    background-color: var(--grey);
 }
 
 select:focus,
 input:focus,
 input:hover {
-  outline: 0;
+    outline: 0;
+}
+
+h2 {
+    height: 40px;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+}
+
+a:active,
+a {
+    text-decoration: none;
+    color: var(--text);
+    transition: .5s;
+}
+
+a:hover {
+    color: var(--text-hover);
+}
+
+form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 40px;
+    color: var(--text);
+}
+
+article {
+    border-radius: 10px;
 }
 
 
 
-.datepicker-wrapper {
+
+/*header styles*/
+.header {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Arbutus';
+}
+
+.logo-wrapper {
+    /* margin-left: auto; */
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    transition: .5s;
+}
+
+.logo:hover {
+    transform: rotate(720deg);
+}
+
+.switch-lang {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    height: 48vh;
-    width: 65vw;
-    gap: 2vw;
-    background-color: #fff;
-    color: #000;
+    margin-left: auto;
+    margin-right: 70px;
+    width: 70px;
+    height: 50px;
+}
+
+.slash {
+    display: block;
+    font-weight: 700;
+}
+
+.en,
+.ru {
+    display: block;
+    padding: 0;
+    font-weight: 700;
+    font-family: inherit;
+    background-color: transparent;
+    border: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.en:hover,
+.ru:hover {
+    color: var(--text-hover);
+}
+
+.en.active,
+.ru.active {
+    color: var(--text-hover);
+}
+
+
+
+
+/*main styles*/
+
+.main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: var(--grey)
+}
+
+section {
+    width: 90%;
+    background-color: var(--light);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+/*actual currencies select styles*/
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 365px;
+}
+
+.input-wrapper {
+    width: 205px;
+    gap: 70px;
+    padding-top: 20px;
+}
+
+.exchange-label,
+.history-label,
+.quantity-label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.exchange-label {
+    height: 55px;
+    margin-bottom: 15px;
+}
+
+
+.currency-selector-wrapper {
+    height: 135px;
+}
+
+
+.quantity-wrapper {
+    position: relative;
+    width: 100%;
+    height: 135px;
+}
+
+.exchange-input,
+.history-input {
+    width: 100%;
+    padding-right: 25px;
+    color: var(--text);
+}
+
+.exchange-input::placeholder,
+.history-input::placeholder {
+    color: var(--text);
+}
+
+
+.cross-wrapper {
+    position: absolute;
+    right: 5px;
+    top: 46px;
+}
+
+.history-cross,
+.exchange-cross {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    transition: .5s;
+}
+
+
+
+
+/*first section buttons styles*/
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-top: 80px;
+}
+
+.convert-button {
+    margin-top: 85px;
+}
+
+.swap-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.swap-img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.swap-img.rotate {
+    transform: rotate(360deg);
+}
+
+
+
+
+/*first section multiselect styles*/
+
+.multiselect-label {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.multiselect-wrapper {
+    width: 325px;
+    padding-top: 20px;
+}
+
+.second-list {
+    font-size: 0.9rem;
+}
+
+
+
+/*first section output styles*/
+
+.outputs-wrapper {
+    width: 385px;
+}
+
+.output-columns-wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.first-output-column,
+.second-output-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.result-label {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: block;
+    width: 380px;
+    height: 25px;
+}
+
+.exchange-output {
+    width: auto;
+}
+
+
+
+
+/*second section styles*/
+
+
+.datepicker-section,
+.display-section {
+    height: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.datepicker-section {
+    flex-direction: column;
+    width: 300px;
 }
 
 .datepicker-form {
-    display: block;
+    gap: 80px;
 }
 
-.choice-section,
-.display-section {
+.history-label {
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+/*error window styles*/
+
+.error {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1vh;
-}
-
-.choice-section {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 35%;
     width: 30%;
+    height: 30%;
+    background-color: var(--modal-window);
+    color: var(--text);
+    font-size: 1.5rem;
 }
 
-.display-section {
-    width: 75%;
+.error p {
+    text-align: center;
 }
 
-.output-wrapper {
-    width: 30%;
-}
-
-.currency-label {
-    width: 23%;
-}
-
-.display-input {
-    width: 72%;
+.error.invisible {
+    display: none;
 }
 
 
 
-
-
+/*footer styles*/
 
 .footer {
     display: flex;
     justify-content: center;
-    padding-bottom: 1vh;
+    padding: 20px 0;
 }
 
 .footer-wrapper {
     display: flex;
-    gap: 1vh;
+    gap: 15px;
 }
 
 .footer-wrapper span,
