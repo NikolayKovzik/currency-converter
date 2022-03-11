@@ -14,23 +14,28 @@ const OEXR_BASE_URL = "https://openexchangerates.org/api/";
 const converter = document.querySelector('.converter');
 const datepickerForm = document.querySelector('.datepicker-form');
 const firstList = document.querySelector('.first-list');
-export const secondList = document.querySelector('.second-list');
-const thirdList = document.querySelector('.third-list');
+const secondList = document.querySelector('.second-list');
 export const exchangeInput = document.querySelector('.exchange-input');
 const columnsWrapper = document.querySelector('.output-columns-wrapper');
 const firstColumnWrapper = document.querySelector('.first-output-column');
 const secondColumnWrapper = document.querySelector('.second-output-column');
-const displayInputs = document.querySelectorAll('.display-output');
-const historyErrorWindow = document.querySelector('.history-error');
 const selectErrorWindow = document.querySelector('.select-error');
-const closeHistoryError = document.querySelector('.close-history-error');
 const closeSelectError = document.querySelector('.close-select-error');
 const swapButton = document.querySelector('.swap-img');
-const crossButton = document.querySelector('.cross');
+const exchangeCrossButton = document.querySelector('.exchange-cross');
+
 // const convertButton = document.querySelector('.convert-button');
 // const searchButton = document.querySelector('.search-button');
-const datepicker = document.querySelector('.datepicker');
 let labelFlag = false;
+
+const thirdList = document.querySelector('.third-list');
+export const historyInput = document.querySelector('.history-input');
+const displayInputs = document.querySelectorAll('.history-output');
+const historyErrorWindow = document.querySelector('.history-error');
+const closeHistoryError = document.querySelector('.close-history-error');
+const historyCrossButton = document.querySelector('.history-cross');
+const datepicker = document.querySelector('.datepicker');
+
 
 async function getData(link) {
     let response = await fetch(link)
@@ -49,8 +54,8 @@ function getArrayOfSelectedValues() {
     return array;
 }
 
-function clearOutput() {
-    document.querySelectorAll('.exchange-output').forEach((item) => item.remove());
+function clearOutput(type) {
+    document.querySelectorAll(`.${type}-output`).forEach((item) => item.remove());
 }
 
 converter.onsubmit = async (event) => {
@@ -65,7 +70,7 @@ converter.onsubmit = async (event) => {
             columnsWrapper.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
             labelFlag = true;
         }
-        clearOutput();
+        clearOutput('exchange');
         let outputs = 0;
         selected.forEach((currency) => {
             outputs++;
@@ -81,7 +86,7 @@ converter.onsubmit = async (event) => {
 
 datepickerForm.onsubmit = async (event) => {
     event.preventDefault();
-    if (datepicker.value && isNotFuture(datepicker.value)) {
+    if (datepicker.value && isNotFuture(datepicker.value) && historyInput.value && historyInput.value > 0) {
         historyErrorWindow.classList.add('invisible');
         let data = await getData(`${OEXR_BASE_URL}historical/${datepicker.value}.json?app_id=${OEXR_API_KEY}`);
 
@@ -89,7 +94,7 @@ datepickerForm.onsubmit = async (event) => {
             let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
             displayInputs.forEach((item) => {
                 if (item.getAttribute('name') === thirdList.value) {
-                    item.value = 1
+                    item.value = 1*historyInput.value;
                 } else {
                     item.value = historyDataValidation(data, item.getAttribute('name'), coef);
                 }
@@ -121,18 +126,23 @@ swapButton.addEventListener('click', () => {
         [firstList.value, secondList.value] = [secondList.value, firstList.value];
         swapButton.classList.toggle('rotate');
         exchangeInput.value = '';
-        clearOutput();
+        clearOutput('exchange');
     } else {
         selectErrorWindow.classList.remove('invisible');
     }
 
 })
 
-crossButton.addEventListener('click', () => {
+exchangeCrossButton.addEventListener('click', () => {
     exchangeInput.value = '';
-    clearOutput();
+    clearOutput('exchange');
 })
 
+historyCrossButton.addEventListener('click', () => {
+    historyInput.value = '';
+    clearOutput('history');
+})
 
-exchangeInput.addEventListener('input', inputValidation)
+exchangeInput.addEventListener('input',()=>{ inputValidation(exchangeInput)})
+historyInput.addEventListener('input', ()=>{ inputValidation(historyInput)})
 

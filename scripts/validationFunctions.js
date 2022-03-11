@@ -1,4 +1,4 @@
-import { exchangeInput, secondList } from "./app.js"
+import { exchangeInput, historyInput } from "./app.js";
 const decimal = '0123456789.';
 
 export function isNotFuture(date) {
@@ -16,9 +16,9 @@ export function isNotFuture(date) {
 }
 
 
-export function inputValidation() {
+export function inputValidation(inputField) {
     let flag = 0;
-    exchangeInput.value = (exchangeInput.value).split('').map((symbol) => {
+    inputField.value = (inputField.value).split('').map((symbol) => {
         if (!decimal.includes(symbol)) {
             return '';
         } else if (symbol !== '.') {
@@ -34,7 +34,7 @@ export function inputValidation() {
 
 
 export function historyDataValidation(data, currency, coef) {
-    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`] * coef).toFixed(2)
+    return (data['rates'][`${currency}`]) ? (data['rates'][`${currency}`] * coef * historyInput.value).toFixed(2)
         : 'no results';
 }
 
@@ -42,9 +42,9 @@ export function actualDataValidation(currencyRate) {
     let result = exchangeInput.value * currencyRate;
     if (!currencyRate) {
         return 'no results';
-    } else if ( result< 9e10) {
+    } else if (result < 9e10) {
         return result.toFixed(2)
-    } else if(result< 9e20){
+    } else if (result < 9e20) {
         return result.toString()[0] + 'e' + (result.toString().length - 1);
     } else return 'too big number'
 }

@@ -54,12 +54,12 @@
                     </div>
 
                     <div class="quantity-wrapper">
-                        <label class="quantity-label" for="currency-input">Enter quantity:</label>
+                        <label class="quantity-label">Enter quantity:</label>
                         <!-- type=text for custom input validation function-->
-                        <input class="exchange-input" type="text" id="currency-input" placeholder="0" value="1"
+                        <input class="exchange-input" type="text" placeholder="0" value="1"
                             autocomplete="off">
                         <div class="cross-wrapper">
-                            <img class="cross" src="./assets/img/cross.png" alt="cross">
+                            <img class="exchange-cross" src="./assets/img/cross.png" alt="cross">
                         </div>
                     </div>
                 </div>
@@ -102,81 +102,98 @@
         <section class="datepicker-wrapper">
             <h2>Exchange rate history</h2>
             <form class="datepicker-form">
-                <div class="choice-section">
+                <div class="datepicker-section">
                     <p>Select the date you would like to view exchange rates against the dollar:</p>
                     <input class="datepicker" type="date">
-                    <p>Select the currency for which you want to see history:</p>
-                    <select class="third-list">
-                        <option value="BYN" selected>BYN</option>
-                        <option value="CAD">CAD</option>
-                        <option value="CHF">CHF</option>
-                        <option value="CNY">CNY</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="HKD">HKD</option>
-                        <option value="JPY">JPY</option>
-                        <option value="KZT">KZT</option>
-                        <option value="PLN">PLN</option>
-                        <option value="RUB">RUB</option>
-                        <option value="USD">USD</option>
-                    </select>
                     <input class="search-button button" type="submit" value="search">
+                </div>
+                <div class="container input-wrapper">
+                    <div class="currency-selector-wrapper">
+                        <label class="select-label">Select the currency for which you want to see history:</label>
+                        <select class="third-list">
+                            <option value="AUD">AUD</option>
+                            <option value="AZN">AZN</option>
+                            <option value="BYN" selected>BYN</option>
+                            <option value="BRL">BRL</option>
+                            <option value="CAD">CAD</option>
+                            <option value="CHF">CHF</option>
+                            <option value="CNY">CNY</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="HKD">HKD</option>
+                            <option value="JPY">JPY</option>
+                            <option value="KZT">KZT</option>
+                            <option value="PLN">PLN</option>
+                            <option value="RUB">RUB</option>
+                            <option value="TWD">TWD</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+
+                    <div class="quantity-wrapper">
+                        <label class="quantity-label">Enter quantity:</label>
+                        <!-- type=text for custom input validation function-->
+                        <input class="history-input" type="text"  placeholder="0" value="1" autocomplete="off">
+                        <div class="cross-wrapper">
+                            <img class="history-cross" src="./assets/img/cross.png" alt="cross">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="display-section">
                     <div class="first-column">
                         <div class="output-wrapper">
                             <label class="currency-label">BYN&nbsp;:</label>
-                            <output class="display-output" name="BYN"></output>
+                            <output class="history-output" name="BYN"></output>
                         </div>
 
                         <div class="output-wrapper">
                             <label class="currency-label">CAD&nbsp;:</label>
-                            <output class="display-output" name="CAD"></output>
+                            <output class="history-output" name="CAD"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">CHF&nbsp;:</label>
-                            <output class="display-output" name="CHF"></output>
+                            <output class="history-output" name="CHF"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">CNY&nbsp;:</label>
-                            <output class="display-output" name="CNY"></output>
+                            <output class="history-output" name="CNY"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">EUR&nbsp;:</label>
-                            <output class="display-output" name="EUR"></output>
+                            <output class="history-output" name="EUR"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">GBP&nbsp;:</label>
-                            <output class="display-output" name="GBP"></output>
+                            <output class="history-output" name="GBP"></output>
                         </div>
                     </div>
                     <div class="second-column">
                         <div class="output-wrapper">
                             <label class="currency-label">HKD&nbsp;:</label>
-                            <output class="display-output" name="HKD"></output>
+                            <output class="history-output" name="HKD"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">JPY&nbsp;:</label>
-                            <output class="display-output" name="JPY"></output>
+                            <output class="history-output" name="JPY"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">KZT&nbsp;:</label>
-                            <output class="display-output" name="KZT"></output>
+                            <output class="history-output" name="KZT"></output>
                         </div>
 
                         <div class="output-wrapper">
                             <label class="currency-label">PLN&nbsp;:</label>
-                            <output class="display-output" name="PLN"></output>
+                            <output class="history-output" name="PLN"></output>
                         </div>
                         <div class="output-wrapper">
                             <label class="currency-label">RUB&nbsp;:</label>
-                            <output class="display-output" name="RUB"></output>
+                            <output class="history-output" name="RUB"></output>
                         </div>
 
                         <div class="output-wrapper">
                             <label class="currency-label">USD&nbsp;:</label>
-                            <output class="display-output" name="USD"></output>
+                            <output class="history-output" name="USD"></output>
                         </div>
                     </div>
                 </div>
