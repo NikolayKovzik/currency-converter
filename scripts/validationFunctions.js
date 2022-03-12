@@ -3,7 +3,7 @@ const decimal = '0123456789.';
 
 export function isNotFuture(date) {
     let arr = date.split('-').map((item) => +item);
-    let now = new Date;
+    let now = new Date();
 
     if (arr[0] > now.getFullYear()) {
         return false;

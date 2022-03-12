@@ -30,7 +30,7 @@ const searchButton = document.querySelector('.search-button');
 const convertButton = document.querySelector('.convert-button');
 export let lang = 'en';
 
-function translatePage(language) {
+export function translatePage(language) {
     let data = document.querySelectorAll('[data-translate]');
     for (let currentElement of data) {
         currentElement.textContent = translateObject[language][currentElement.getAttribute('data-translate')];

@@ -351,6 +351,18 @@ section {
     font-size: 0.9rem;
 }
 
+.second-list { 
+    font-size: 0.9rem; 
+} 
+ 
+.second-list::-webkit-scrollbar { 
+    width: 10px; 
+} 
+.second-list::-webkit-scrollbar-thumb { 
+    border-radius: 10px; 
+    background-color: #e1e2e1; 
+  }
+
 
 
 /*first section output styles*/
