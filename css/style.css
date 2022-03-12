@@ -20,7 +20,6 @@ html {
     --modal-button: #ac7b7b;
 }
 
-
 body {
     font-family: "Didact Gothic";
     font-style: normal;
@@ -141,7 +140,7 @@ h1 {
 }
 
 .logo-wrapper {
-    /* margin-left: auto; */
+    margin-left: auto;
 }
 
 .logo {
@@ -309,6 +308,11 @@ section {
     margin-top: 85px;
 }
 
+.ru-button {
+    width: 125px;
+    font-size: 16px;
+}
+
 .swap-wrapper {
     display: flex;
     justify-content: center;
@@ -346,6 +350,18 @@ section {
 .second-list {
     font-size: 0.9rem;
 }
+
+.second-list { 
+    font-size: 0.9rem; 
+} 
+ 
+.second-list::-webkit-scrollbar { 
+    width: 10px; 
+} 
+.second-list::-webkit-scrollbar-thumb { 
+    border-radius: 10px; 
+    background-color: #e1e2e1; 
+  }
 
 
 

@@ -1,29 +1,26 @@
 import { isNotFuture, inputValidation, historyDataValidation, actualDataValidation } from './validationFunctions.js'
-//const DF_API_KEY = "ba982e3f1b2533d1f07c769f25d59182";
-//const DF_BASE_URL = "http://data.fixer.io/api/";
+import { chooseLangButton, lang } from './translate.js';
+import { setLocalStorage, getLocalStorage } from './localStorage.js';
 
-/*OLD
-//use for actual courses, 250 per month
-const EXR_API_KEY = "5b0ec37250a51e6d43357326";
-const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
-//use for history queries, 1000 per month
-const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
-const OEXR_BASE_URL = "https://openexchangerates.org/api/";
-*/
 
-/*NEW*/
-//use for actual courses, 250 per month
+//OLD KEYS
+//const EXR_API_KEY = "5b0ec37250a51e6d43357326";
+//const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
+
+//NEW KEYS
 const EXR_API_KEY = "980a7ed07a511424d64c08be";
+const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
+
+//use for actual courses, 250 per month
 const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
 //use for history queries, 1000 per month
-const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
 const OEXR_BASE_URL = "https://openexchangerates.org/api/";
 
-const converter = document.querySelector('.converter');
-const datepickerForm = document.querySelector('.datepicker-form');
-const firstList = document.querySelector('.first-list');
-const secondList = document.querySelector('.second-list');
+
+export const firstList = document.querySelector('.first-list');
+export const secondList = document.querySelector('.second-list');
 export const exchangeInput = document.querySelector('.exchange-input');
+const converter = document.querySelector('.converter');
 const actualOutputs = document.querySelector('.actual-outputs');
 const firstActualColumn = document.querySelector('.first-actual-column');
 const secondActualColumn = document.querySelector('.second-actual-column');
@@ -33,17 +30,19 @@ const swapButton = document.querySelector('.swap-img');
 const exchangeCrossButton = document.querySelector('.exchange-cross');
 let actualLabelFlag = false;
 
-const thirdList = document.querySelector('.third-list');
+export const datepicker = document.querySelector('.datepicker');
+export const thirdList = document.querySelector('.third-list');
 export const historyInput = document.querySelector('.history-input');
+const datepickerForm = document.querySelector('.datepicker-form');
 const historyOutputs = document.querySelector('.history-outputs');
 const firstHistoryColumn = document.querySelector('.first-history-column');
 const secondHistoryColumn = document.querySelector('.second-history-column');
-// const displayOutputs = document.querySelectorAll('.display-output');
 const historyErrorWindow = document.querySelector('.history-error');
 const closeHistoryError = document.querySelector('.close-history-error');
 const historyCrossButton = document.querySelector('.history-cross');
-const datepicker = document.querySelector('.datepicker');
 let historyLabelFlag = false;
+
+const switchLang = document.querySelector('.switch-lang');
 
 async function getData(link) {
     let response = await fetch(link)
@@ -52,7 +51,7 @@ async function getData(link) {
     return data;
 }
 
-function getArrayOfSelectedValues() {
+export function getArrayOfSelectedValues() {
     let array = [];
     for (let option of secondList.options) {
         if (option.selected) {
@@ -61,6 +60,8 @@ function getArrayOfSelectedValues() {
     }
     return array;
 }
+
+
 
 function clearOutput(type) {
     document.querySelectorAll(`.${type}-output`).forEach((item) => item.remove());
@@ -74,7 +75,7 @@ converter.onsubmit = async (event) => {
         let data = await getData(`${EXR_BASE_URL}/${EXR_API_KEY}/latest/${firstList.value}`);
 
         if (!actualLabelFlag) {
-            actualOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            actualOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label" data-translate="result">${lang==='en'? 'Result':'Результат'}:</label>`);
             actualLabelFlag = true;
         }
         clearOutput('exchange');
@@ -99,7 +100,7 @@ datepickerForm.onsubmit = async (event) => {
 
         let coef = data['rates']['USD'] / data['rates'][`${thirdList.value}`];
         if (!historyLabelFlag) {
-            historyOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label">Result:</label>`);
+            historyOutputs.insertAdjacentHTML('beforebegin', `<label class="result-label" data-translate="result">${lang==='en'? 'Result':'Результат'}:</label>`);
             historyLabelFlag = true;
         }
         clearOutput('history');
@@ -154,3 +155,14 @@ historyCrossButton.addEventListener('click', () => {
 exchangeInput.addEventListener('input', () => { inputValidation(exchangeInput) })
 historyInput.addEventListener('input', () => { inputValidation(historyInput) })
 
+
+
+
+
+
+
+
+switchLang.addEventListener('click', chooseLangButton)
+
+window.addEventListener('beforeunload', ()=>{setLocalStorage(firstList, thirdList, datepicker)});
+window.addEventListener('load', getLocalStorage);

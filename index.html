@@ -19,25 +19,25 @@
             <img class="logo" src="./assets/img/header-img2.png" alt="logo">
         </div>
         <h1>CURRENCY CONVERTER</h1>
-        <!-- <div class="switch-lang">
+        <div class="switch-lang">
             <button class="en active" data-switch="en">en</button>
             <span class="slash">/</span>
             <button class="ru" data-switch="ru">ru</button>
-        </div> -->
+        </div>
     </header>
 
     <main class="main wrapper">
 
         <section class="converter-wrapper">
-            <h2>Actual exchange rate</h2>
+            <h2 data-translate="exchange-rate">Actual exchange rate</h2>
             <form class="converter">
                 <div class="container input-wrapper">
                     <div class="currency-selector-wrapper">
-                        <label class="exchange-label">Select the currency you want to exchange:</label>
+                        <label class="exchange-label" data-translate="currency-select">Select the currency you want to exchange:</label>
                         <select class="first-list">
                             <option value="AUD">AUD</option>
                             <option value="AZN">AZN</option>
-                            <option value="BYN" selected>BYN</option>
+                            <option value="BYN">BYN</option>
                             <option value="BRL">BRL</option>
                             <option value="CAD">CAD</option>
                             <option value="CHF">CHF</option>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="quantity-wrapper">
-                        <label class="quantity-label">Enter quantity:</label>
+                        <label class="quantity-label" data-translate="currency-quantity">Enter quantity:</label>
                         <!-- type=text for custom input validation function-->
                         <input class="exchange-input" type="text" placeholder="0" value="1"
                             autocomplete="off">
@@ -68,10 +68,10 @@
                     <div class="swap-wrapper">
                         <img class="swap-img" src="./assets/img/swap.png" alt="swap">
                     </div>
-                    <input class="convert-button button" type="submit" value="convert">
+                    <input class="convert-button button" type="submit" value="Convert">
                 </div>
                 <div class="container multiselect-wrapper">
-                    <label class="multiselect-label">Hold CTRL, and select currencies you want to convert into:</label>
+                    <label class="multiselect-label" data-translate="currency-multiselect">Hold CTRL, and select currencies you want to convert into:</label>
                     <select class="second-list" multiple size="5">
                         <option value="AUD">AUD</option>
                         <option value="AZN">AZN</option>
@@ -88,7 +88,7 @@
                         <option value="PLN">PLN</option>
                         <option value="RUB">RUB</option>
                         <option value="TWD">TWD</option>
-                        <option value="USD" selected>USD</option>
+                        <option value="USD">USD</option>
                     </select>
                 </div>
                 <div class="outputs-wrapper">
@@ -101,20 +101,20 @@
         </section>
 
         <section class="datepicker-wrapper">
-            <h2>Exchange rate history</h2>
+            <h2 data-translate="rate-history">Exchange rate history</h2>
             <form class="datepicker-form">
                 <div class="datepicker-section">
-                    <p>Select the date you would like to view exchange rates against the dollar:</p>
+                    <p data-translate="date-select">Select the date you would like to view exchange rates:</p>
                     <input class="datepicker" type="date">
-                    <input class="search-button button" type="submit" value="search">
+                    <input class="search-button button" type="submit" value="Search">
                 </div>
                 <div class="container input-wrapper">
                     <div class="currency-selector-wrapper">
-                        <label class="history-label">Select the currency for which you want to see history:</label>
+                        <label class="history-label" data-translate="currency-history-select">Select the currency for which you want to see history:</label>
                         <select class="third-list">
                             <option value="AUD">AUD</option>
                             <option value="AZN">AZN</option>
-                            <option value="BYN" selected>BYN</option>
+                            <option value="BYN">BYN</option>
                             <option value="BRL">BRL</option>
                             <option value="CAD">CAD</option>
                             <option value="CHF">CHF</option>
@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="quantity-wrapper">
-                        <label class="quantity-label">Enter quantity:</label>
+                        <label class="quantity-label" data-translate="currency-quantity">Enter quantity:</label>
                         <!-- type=text for custom input validation function-->
                         <input class="history-input" type="text"  placeholder="0" value="1" autocomplete="off">
                         <div class="cross-wrapper">
@@ -151,14 +151,14 @@
         </section>
 
         <article class="error history-error invisible">
-            <h2>Error!</h2>
-            <p>You can't watch course from the future! Please select a valid date.</p>
+            <h2 data-translate="error">Error!</h2>
+            <p data-translate="error-future">You can't watch course from the future! Please select a valid date.</p>
             <button class="close-history-error button">OK</button>
         </article>
 
         <article class="error select-error invisible">
-            <h2>Error!</h2>
-            <p>Please select one currency in multiple input to swap.</p>
+            <h2 data-translate="error">Error!</h2>
+            <p data-translate="error-select">Please select one currency in multiple input to swap.</p>
             <button class="close-select-error button">OK</button>
         </article>
     </main>
