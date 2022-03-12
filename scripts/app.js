@@ -4,12 +4,12 @@ import { setLocalStorage, getLocalStorage } from './localStorage.js';
 
 
 //OLD KEYS
-const EXR_API_KEY = "5b0ec37250a51e6d43357326";
-const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
+//const EXR_API_KEY = "5b0ec37250a51e6d43357326";
+//const OEXR_API_KEY = "3f8166cfef574c9eb1486f502eb97162";
 
 //NEW KEYS
-// const EXR_API_KEY = "980a7ed07a511424d64c08be";
-// const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
+const EXR_API_KEY = "980a7ed07a511424d64c08be";
+const OEXR_API_KEY = "c084e55e531447359525acf462d1c69f";
 
 //use for actual courses, 250 per month
 const EXR_BASE_URL = "https://v6.exchangerate-api.com/v6";
